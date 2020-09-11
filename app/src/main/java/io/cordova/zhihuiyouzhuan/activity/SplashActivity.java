@@ -17,6 +17,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+
 import com.alibaba.fastjson.JSON;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -32,20 +33,19 @@ import java.util.Calendar;
 
 import butterknife.BindView;
 import cn.jpush.android.api.JPushInterface;
+import io.cordova.zhihuiyouzhuan.Main2Activity;
 import io.cordova.zhihuiyouzhuan.R;
 import io.cordova.zhihuiyouzhuan.UrlRes;
 import io.cordova.zhihuiyouzhuan.YsMainActivity;
+import io.cordova.zhihuiyouzhuan.bean.Constants;
 import io.cordova.zhihuiyouzhuan.bean.LoginBean;
 import io.cordova.zhihuiyouzhuan.utils.AesEncryptUtile;
-import io.cordova.zhihuiyouzhuan.utils.SPUtil;
-import io.cordova.zhihuiyouzhuan.utils.StringUtils;
-import io.cordova.zhihuiyouzhuan.utils.T;
-import io.cordova.zhihuiyouzhuan.Main2Activity;
-
-import io.cordova.zhihuiyouzhuan.bean.Constants;
 import io.cordova.zhihuiyouzhuan.utils.CookieUtils;
 import io.cordova.zhihuiyouzhuan.utils.MyApp;
+import io.cordova.zhihuiyouzhuan.utils.SPUtil;
 import io.cordova.zhihuiyouzhuan.utils.SPUtils;
+import io.cordova.zhihuiyouzhuan.utils.StringUtils;
+import io.cordova.zhihuiyouzhuan.utils.T;
 
 
 /**
@@ -101,7 +101,7 @@ public class SplashActivity extends AppCompatActivity {
 
         @Override
         public void handleMessage(Message msg) {
-            if (StringUtils.isEmpty((String)SPUtils.get(MyApp.getInstance(),"username",""))){
+            if (StringUtils.isEmpty((String) SPUtils.get(MyApp.getInstance(),"username",""))){
                 Intent intent = new Intent(getApplicationContext(), YsMainActivity.class);
                 startActivity(intent);
                 finish();
@@ -433,7 +433,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
             if (url.contains(UrlRes.HOME2_URL + "/cas/login")) {
-                if (StringUtils.isEmpty((String)SPUtils.get(MyApp.getInstance(),"username",""))){
+                if (StringUtils.isEmpty((String) SPUtils.get(MyApp.getInstance(),"username",""))){
                     Intent intent = new Intent(getApplicationContext(),LoginActivity2.class);
                     startActivity(intent);
                     finish();
@@ -448,7 +448,7 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             if (url.contains(UrlRes.HOME2_URL + "/cas/login")) {
-                if (StringUtils.isEmpty((String)SPUtils.get(MyApp.getInstance(),"username",""))){
+                if (StringUtils.isEmpty((String) SPUtils.get(MyApp.getInstance(),"username",""))){
                     Intent intent = new Intent(getApplicationContext(),LoginActivity2.class);
                     startActivity(intent);
                     finish();
