@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    app:ignore="NamespaceTypo">
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll_layout"
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@mipmap/student_bg"
+            android:layout_height="260dp">
+
+
+            <TextView
+                android:layout_marginTop="80dp"
+                android:layout_marginLeft="@dimen/dp50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="管理者 0000001"
+                android:textColor="#fff"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingRight="@dimen/dp10"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
+                android:gravity="center"
+                android:background="@drawable/blue_track"
+                />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:text="TUE."
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:text="5月28日"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:text="今日有4门课程"
+                android:layout_marginLeft="@dimen/dp20"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:text="明天有2门课程"
+                android:layout_marginLeft="@dimen/dp20"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            card_view:cardBackgroundColor="#fff"
+            card_view:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation = "5dp"
+            card_view:cardPreventCornerOverlap="true"
+            card_view:cardUseCompatPadding="true">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:orientation="horizontal"
+               android:padding="@dimen/dp10"
+               android:layout_height="50dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_marginLeft="@dimen/dp10"
+                android:src="@mipmap/notice"
+                android:layout_height="30dp" />
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:gravity="center"
+                   android:text="您有10条信息待查看，请及时查看"
+                   android:layout_height="match_parent" />
+               <ImageView
+                   android:layout_width="wrap_content"
+                   android:src="@mipmap/right_gray"
+                   android:layout_height="match_parent" />
+           </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="@dimen/dp15"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:text="推荐服务"
+            android:textSize="@dimen/sp14"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/dp30"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            card_view:cardBackgroundColor="#fff"
+            card_view:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation = "5dp"
+            card_view:cardPreventCornerOverlap="true"
+            card_view:cardUseCompatPadding="true">
+          <android.support.v7.widget.RecyclerView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+          </android.support.v7.widget.RecyclerView>
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="@dimen/dp15"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:text="数据提醒"
+            android:textSize="@dimen/sp14"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_height="wrap_content" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:scrollbars="none"
+            android:layout_height="130dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="130dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp5"
+                    card_view:cardBackgroundColor="#279CFA"
+                    card_view:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    app:cardMaxElevation = "5dp"
+                    card_view:cardPreventCornerOverlap="true"
+                    card_view:cardUseCompatPadding="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp10"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:text="oa待办"
+                            android:textColor="@color/white" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_marginBottom="@dimen/dp10"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp10"
+                                android:layout_marginTop="@dimen/dp15"
+                                android:text="17/条"
+                                android:textColor="@color/white" />
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:src="@mipmap/message_logo"
+                                android:layout_height="50dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="130dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_marginRight="@dimen/dp5"
+                    card_view:cardBackgroundColor="#18D2CF"
+                    card_view:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    app:cardMaxElevation = "5dp"
+                    card_view:cardPreventCornerOverlap="true"
+                    card_view:cardUseCompatPadding="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp10"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:text="oa待阅"
+                            android:textColor="@color/white" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_marginBottom="@dimen/dp10"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp10"
+                                android:layout_marginTop="@dimen/dp15"
+                                android:text="17/条"
+                                android:textColor="@color/white" />
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:src="@mipmap/message_logo"
+                                android:layout_height="50dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="130dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_marginRight="@dimen/dp5"
+                    card_view:cardBackgroundColor="#279CFA"
+                    card_view:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    app:cardMaxElevation = "5dp"
+                    card_view:cardPreventCornerOverlap="true"
+                    card_view:cardUseCompatPadding="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp10"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:text="oa已办"
+                            android:textColor="@color/white" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_marginBottom="@dimen/dp10"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp10"
+                                android:layout_marginTop="@dimen/dp15"
+                                android:text="17/条"
+                                android:textColor="@color/white" />
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:src="@mipmap/message_logo"
+                                android:layout_height="50dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="130dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_marginRight="@dimen/dp5"
+                    card_view:cardBackgroundColor="#18D2CF"
+                    card_view:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    app:cardMaxElevation = "5dp"
+                    card_view:cardPreventCornerOverlap="true"
+                    card_view:cardUseCompatPadding="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp10"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:text="oa已阅"
+                            android:textColor="@color/white" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_marginBottom="@dimen/dp10"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp10"
+                                android:layout_marginTop="@dimen/dp15"
+                                android:text="17/条"
+                                android:textColor="@color/white" />
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:src="@mipmap/message_logo"
+                                android:layout_height="50dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+
+        </HorizontalScrollView>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginLeft="@dimen/dp15"
+            android:src="@drawable/student_banner"
+            />
+     <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:text="党政建设"
+            android:textSize="@dimen/sp14"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:text="教务信息"
+            android:layout_marginLeft="@dimen/dp25"
+            android:textSize="@dimen/sp14"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp20"
+            android:text="后勤信息"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp14"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:text="更多"
+            android:textSize="@dimen/sp12"
+            android:textColor="#279CFA"
+            android:gravity="right|center"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginTop="-10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="70dp"
+                android:padding="@dimen/dp5"
+                android:background="@drawable/biao_bg"
+                android:alpha="0.8"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="70dp"
+                android:background="@drawable/biao_bg"
+                android:layout_marginLeft="@dimen/dp10"
+                android:alpha="0.8"
+                android:padding="@dimen/dp5"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="70dp"
+                android:background="@drawable/biao_bg"
+                android:layout_marginLeft="@dimen/dp10"
+                android:alpha="0.8"
+                android:padding="@dimen/dp5"
+                android:layout_height="10dp" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp20"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+
+
+
+    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/scroll_layout"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp30"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/school_logo_w"
+                android:layout_height="50dp" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:src="@mipmap/scan_img_w"
+                android:layout_marginLeft="@dimen/dp100"
+                android:gravity="right"
+                android:layout_height="50dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

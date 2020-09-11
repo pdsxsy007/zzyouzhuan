@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    app:ignore="NamespaceTypo">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:background="@color/colorPrimary"
+        android:visibility="visible"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="综合信息"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            />
+
+        <RelativeLayout
+            android:id="@+id/rl_msg_app1"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            >
+            <ImageView
+                android:id="@+id/tv_app_msg"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/msg_hint"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="@dimen/dp10"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/swipeLayout"
+        app:srlAccentColor="@android:color/white"
+        app:srlEnablePreviewInEditMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <io.cordova.zhihuiyouzhuan.widget.VerticalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:descendantFocusability="blocksDescendants"
+                >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fitsSystemWindows="true"
+        >
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:scrollbars="none"
+            android:id="@+id/btn"
+            android:layout_height="40dp">
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:id="@+id/radio_group"
+                android:layout_height="match_parent">
+                <RadioButton
+                    android:layout_height="match_parent"
+                    android:layout_width="80dp"
+                    android:text="学院通知"
+                    android:visibility="gone"
+                    android:id="@+id/xy_tz"
+                    android:button="@null"
+                    android:background="@drawable/rb_line"
+                    android:textColor="@drawable/rb_tv_bg"
+                    android:checked="true"
+                    android:textSize="@dimen/sp14"
+                    android:gravity="center"
+                    />
+
+                <RadioButton
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:text="公告"
+                    android:visibility="gone"
+                    android:clickable="false"
+                    android:button="@null"
+                    android:id="@+id/notice_news"
+                    android:background="@drawable/rb_line"
+                    android:textColor="@drawable/rb_tv_bg"
+                    android:textSize="@dimen/sp14"
+                    android:gravity="center"
+                    />
+                <RadioButton
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:text="热门主题"
+                    android:visibility="gone"
+                    android:clickable="false"
+                    android:button="@null"
+                    android:background="@drawable/rb_line"
+                    android:textColor="@drawable/rb_tv_bg"
+                    android:id="@+id/rm_zt"
+                    android:textSize="@dimen/sp14"
+                    android:gravity="center"
+                    />
+
+                <RadioButton
+                    android:id="@+id/jw_sta"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rb_line"
+                    android:textColor="@drawable/rb_tv_bg"
+                    android:button="@null"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="教务处"
+                    android:textSize="@dimen/sp14" />
+                <RadioButton
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:text="学生处"
+                    android:clickable="false"
+                    android:button="@null"
+                    android:id="@+id/xs_sta"
+                    android:background="@drawable/rb_line"
+                    android:textColor="@drawable/rb_tv_bg"
+                    android:textSize="@dimen/sp14"
+                    android:gravity="center"
+                    />
+                <RadioButton
+                    android:layout_width="80dp"
+
+                    android:layout_height="match_parent"
+                    android:text="招生处"
+                    android:clickable="false"
+                    android:button="@null"
+                    android:id="@+id/zs_sta"
+                    android:background="@drawable/rb_line"
+                    android:textColor="@drawable/rb_tv_bg"
+                    android:textSize="@dimen/sp14"
+                    android:gravity="center"
+                    />
+
+
+            </RadioGroup>
+
+        </HorizontalScrollView>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha="0.1"
+            android:background="@color/black"
+            >
+
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_below ="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            />
+    </RelativeLayout>
+            </LinearLayout>
+        </io.cordova.zhihuiyouzhuan.widget.VerticalScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+</LinearLayout>
