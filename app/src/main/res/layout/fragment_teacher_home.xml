@@ -7,10 +7,8 @@
     android:layout_height="match_parent"
     app:ignore="NamespaceTypo">
     <LinearLayout
-
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/dp30"
         android:layout_marginLeft="@dimen/dp15"
         android:layout_marginRight="@dimen/dp15"
         android:layout_height="wrap_content">
@@ -55,7 +53,6 @@
          android:background="@drawable/white_track"
          />
 
-
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -66,10 +63,9 @@
             />
 
 
-
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:layout_marginTop="@dimen/dp10"
             android:layout_marginLeft="@dimen/dp15"
             android:layout_marginRight="@dimen/dp15"
@@ -83,24 +79,33 @@
                android:layout_width="match_parent"
                android:orientation="horizontal"
                android:gravity="center_vertical"
-               android:layout_height="50dp">
+               android:layout_height="match_parent">
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp50"
                 android:layout_marginLeft="@dimen/dp10"
                 android:src="@mipmap/notice"
-                android:layout_height="wrap_content" />
+                android:layout_height="30dp" />
 
-               <TextView
-                   android:layout_width="0dp"
-                   android:layout_weight="1"
-                   android:gravity="center"
-                   android:text="您有10条信息待查看，请及时查看"
-                   android:layout_height="match_parent" />
-               <ImageView
-                   android:layout_width="wrap_content"
-                   android:src="@mipmap/right_gray"
-                   android:layout_marginRight="@dimen/dp10"
-                   android:layout_height="match_parent" />
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:gravity="center"
+                       android:text="您有10条信息待查看，请及时查看"
+                       android:layout_marginLeft="@dimen/dp10"
+                       android:layout_centerVertical="true"
+                       android:layout_height="wrap_content" />
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:src="@mipmap/right_gray"
+                       android:layout_height="wrap_content"
+                       android:layout_centerVertical="true"
+                       android:layout_alignParentRight="true"
+                       android:layout_marginRight="@dimen/dp10"
+                       />
+               </RelativeLayout>
+
            </LinearLayout>
 
         </android.support.v7.widget.CardView>
@@ -153,27 +158,29 @@
             android:layout_width="match_parent"
             android:scrollbars="none"
             android:layout_height="130dp">
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView
-                    android:layout_width="130dp"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_width="120dp"
+                    android:layout_height="105dp"
                     android:layout_marginLeft="@dimen/dp15"
                     android:layout_marginRight="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp10"
+                    app:cardElevation="5dp"
+                    app:cardMaxElevation="5dp"
                     card_view:cardBackgroundColor="#279CFA"
                     card_view:cardCornerRadius="10dp"
-                    app:cardElevation="5dp"
-                    app:cardMaxElevation = "5dp"
                     card_view:cardPreventCornerOverlap="true"
                     card_view:cardUseCompatPadding="true">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -186,10 +193,11 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/dp10"
-                            android:layout_height="wrap_content">
+                            android:layout_marginRight="@dimen/dp10"
+                            android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -197,31 +205,33 @@
                                 android:layout_marginTop="@dimen/dp15"
                                 android:text="17/条"
                                 android:textColor="@color/white" />
+
                             <ImageView
                                 android:layout_width="50dp"
-                                android:src="@mipmap/message_logo"
-                                android:layout_height="50dp" />
+                                android:layout_height="50dp"
+                                android:src="@mipmap/message_logo" />
                         </LinearLayout>
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    android:layout_width="130dp"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_width="120dp"
+                    android:layout_height="105dp"
                     android:layout_marginLeft="@dimen/dp5"
                     android:layout_marginRight="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp10"
+                    app:cardElevation="5dp"
+                    app:cardMaxElevation="5dp"
                     card_view:cardBackgroundColor="#18D2CF"
                     card_view:cardCornerRadius="10dp"
-                    app:cardElevation="5dp"
-                    app:cardMaxElevation = "5dp"
                     card_view:cardPreventCornerOverlap="true"
                     card_view:cardUseCompatPadding="true">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -234,10 +244,11 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/dp10"
-                            android:layout_height="wrap_content">
+                            android:layout_marginRight="@dimen/dp10"
+                            android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -245,31 +256,33 @@
                                 android:layout_marginTop="@dimen/dp15"
                                 android:text="17/条"
                                 android:textColor="@color/white" />
+
                             <ImageView
                                 android:layout_width="50dp"
-                                android:src="@mipmap/message_logo"
-                                android:layout_height="50dp" />
+                                android:layout_height="50dp"
+                                android:src="@mipmap/message_logo" />
                         </LinearLayout>
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    android:layout_width="130dp"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_width="120dp"
+                    android:layout_height="105dp"
                     android:layout_marginLeft="@dimen/dp5"
                     android:layout_marginRight="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp10"
+                    app:cardElevation="5dp"
+                    app:cardMaxElevation="5dp"
                     card_view:cardBackgroundColor="#279CFA"
                     card_view:cardCornerRadius="10dp"
-                    app:cardElevation="5dp"
-                    app:cardMaxElevation = "5dp"
                     card_view:cardPreventCornerOverlap="true"
                     card_view:cardUseCompatPadding="true">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -282,10 +295,11 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/dp10"
-                            android:layout_height="wrap_content">
+                            android:layout_marginRight="@dimen/dp10"
+                            android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -293,10 +307,11 @@
                                 android:layout_marginTop="@dimen/dp15"
                                 android:text="17/条"
                                 android:textColor="@color/white" />
+
                             <ImageView
                                 android:layout_width="50dp"
-                                android:src="@mipmap/message_logo"
-                                android:layout_height="50dp" />
+                                android:layout_height="50dp"
+                                android:src="@mipmap/message_logo" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -304,20 +319,21 @@
 
                 <android.support.v7.widget.CardView
                     android:layout_width="130dp"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_height="105dp"
                     android:layout_marginLeft="@dimen/dp5"
                     android:layout_marginRight="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp10"
+                    app:cardElevation="5dp"
+                    app:cardMaxElevation="5dp"
                     card_view:cardBackgroundColor="#18D2CF"
                     card_view:cardCornerRadius="10dp"
-                    app:cardElevation="5dp"
-                    app:cardMaxElevation = "5dp"
                     card_view:cardPreventCornerOverlap="true"
                     card_view:cardUseCompatPadding="true">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -330,10 +346,11 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/dp10"
-                            android:layout_height="wrap_content">
+                            android:layout_marginRight="@dimen/dp10"
+                            android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -341,10 +358,11 @@
                                 android:layout_marginTop="@dimen/dp15"
                                 android:text="17/条"
                                 android:textColor="@color/white" />
+
                             <ImageView
                                 android:layout_width="50dp"
-                                android:src="@mipmap/message_logo"
-                                android:layout_height="50dp" />
+                                android:layout_height="50dp"
+                                android:src="@mipmap/message_logo" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -426,7 +444,7 @@
             <TextView
                 android:layout_width="70dp"
                 android:background="@drawable/biao_bg"
-                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp5"
                 android:alpha="0.8"
                 android:padding="@dimen/dp5"
                 android:layout_height="10dp" />
@@ -522,7 +540,7 @@
             <TextView
                 android:layout_width="70dp"
                 android:background="@drawable/biao_bg"
-                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp5"
                 android:alpha="0.8"
                 android:padding="@dimen/dp5"
                 android:layout_height="10dp" />
@@ -530,7 +548,7 @@
             <TextView
                 android:layout_width="70dp"
                 android:background="@drawable/biao_bg"
-                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp5"
                 android:alpha="0.8"
                 android:padding="@dimen/dp5"
                 android:layout_height="10dp" />
