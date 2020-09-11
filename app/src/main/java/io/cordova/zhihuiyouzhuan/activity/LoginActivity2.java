@@ -143,7 +143,7 @@ public class LoginActivity2 extends LoginBaseActivity implements GestureDetector
     @Override
     protected void initSystemBar() {
         super.initSystemBar();
-//提交
+//提交啊
         gestureDetector = new GestureDetector(this,this);
         tv_find_pwd.setOnClickListener(new View.OnClickListener() {
             @Override
