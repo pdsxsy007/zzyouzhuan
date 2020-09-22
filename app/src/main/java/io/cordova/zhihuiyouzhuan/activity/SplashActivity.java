@@ -102,7 +102,7 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             if (StringUtils.isEmpty((String) SPUtils.get(MyApp.getInstance(),"username",""))){
-                Intent intent = new Intent(getApplicationContext(), YsMainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), YsLoginActivity.class);
                 startActivity(intent);
                 finish();
             }else {
@@ -132,7 +132,7 @@ public class SplashActivity extends AppCompatActivity {
         try {
             String imei = AesEncryptUtile.encrypt((String) SPUtils.get(this, "imei", ""), AesEncryptUtile.key);
             OkGo.<String>get(UrlRes.HOME2_URL +"/cas/casApiLoginController")
-                    .params( "openid","jh6000000904057679")
+                    .params( "openid","123456")
 //                    .params("openid","123456zxd")
                     .params("username",s1)
                     .params("password",s2)
@@ -156,7 +156,7 @@ public class SplashActivity extends AppCompatActivity {
                                     SPUtils.put(getApplicationContext(),"password",s2);
                                /* webView.setWebViewClient(mWebViewClient);
                                 webView.loadUrl("http://iapp.zzuli.edu.cn/portal/login/appLogin");*/
-                                    Intent intent = new Intent(MyApp.getInstance(),Main2Activity.class);
+                                    Intent intent = new Intent(MyApp.getInstance(),YsMainActivity.class);
                                     intent.putExtra("userId",userName);
                                     startActivity(intent);
                                     finish();
@@ -171,7 +171,7 @@ public class SplashActivity extends AppCompatActivity {
                                 SPUtils.put(getApplicationContext(),"TGC","");
                                 SPUtils.put(getApplicationContext(),"username","");
                                 SPUtils.put(getApplicationContext(),"password","");
-                                Intent intent = new Intent(MyApp.getInstance(),Main2Activity.class);
+                                Intent intent = new Intent(MyApp.getInstance(),YsMainActivity.class);
                                 startActivity(intent);
                                 finish();
 
@@ -181,7 +181,7 @@ public class SplashActivity extends AppCompatActivity {
                         @Override
                         public void onError(Response<String> response) {
                             super.onError(response);
-                            Intent intent = new Intent(MyApp.getInstance(),Main2Activity.class);
+                            Intent intent = new Intent(MyApp.getInstance(),YsMainActivity.class);
                             startActivity(intent);
                             finish();
 

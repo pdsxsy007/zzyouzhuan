@@ -14,28 +14,34 @@ public class UrlRes {
     /**
      * 服务器地址
      */
-//    public static String HOME_URL ="http://61.163.104.243:18083";
-//    public static String HOME_URL ="http://192.168.30.5:8081";//赵新东
-    public static String HOME_URL ="http://yd.hntyxxh.com:18083";
+    public static String HOME_URL ="http://39.101.203.225:8081";
+//    public static String HOME_URL ="http://192.168.30.31:8081";//赵新东
+//    public static String HOME_URL ="http://yd.hntyxxh.com:18083";
 
 //    public static String news_url = "http://192.168.30.5:8082/portal-hnxxzy/thirdNews/newsDetail";
     //新闻
-    public static String news_url = "http://yd.hntyxxh.com:18083/portal/thirdNews/newsDetail";
+//    public static String news_url = "http://yd.hntyxxh.com:18083/portal/thirdNews/newsDetail";
 
-
+    public static String news_url = "http://192.168.30.31:8081/portal/mobile/portalNews/getNewsFromRedis";
 
     /*tgt  相关*/
-//    public static String HOME2_URL ="http://61.163.104.243:18082";
+    public static String HOME2_URL ="http://39.101.203.225:8080";
 //    public static String HOME2_URL ="http://192.168.30.5:8080";//赵新东
 
-    public static String HOME2_URL ="http://sfrz.hntyxxh.com:18082";
+//    public static String HOME2_URL ="http://sfrz.hntyxxh.com:18082";
 
     /*绑定极光*/
     public static String HOME4_URL ="http://61.163.104.243:18083";
 
     /*图片前缀*/
-    public static String HOME3_URL ="http://yd.hntyxxh.com:18083/portal/public/getImg?path=";
+    public static String HOME3_URL ="http://39.101.203.225:8081/portal/public/getImg?path=";
 //    public static String HOME3_URL ="http://192.168.30.31:8081/portal/public/getImg?path=";
+
+
+    /**
+     *抓取新闻
+     */
+    public static String findNews = "/portal/mobile/news/findNews";
 
     /**
      *  获取极光绑定ID
@@ -267,4 +273,10 @@ public class UrlRes {
     public static String getNewsDetailsUrl= "/portal/mobile/news/getNewsDetails";
 
     public static String getOaworkflow= "/portal/mobile/tdoa/oaworkflow";
+
+
+    //获取新闻类型
+    public static String getPortalNewsModules= "/portal/mobile/portalNews/getPortalNewsModules";
+    //根据类型id获取新闻
+    public static String getNews= "/portal/mobile/portalNews/getNews";
 }

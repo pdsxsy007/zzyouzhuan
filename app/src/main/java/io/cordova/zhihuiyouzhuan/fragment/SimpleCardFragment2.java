@@ -59,36 +59,37 @@ public class SimpleCardFragment2 extends Fragment {
         listsUrl.clear();
         listsName.clear();
         List<ItemNewsBean2> list = jsonStringConvertToList(json, ItemNewsBean2[].class);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 4; i++) {
             listTen.add(list.get(i));
         }
 
-        listsUrl.add("http://www.hnisvc.com/news/tzgg/tz/");
-        listsUrl.add("http://www.hnisvc.com/news/tzgg/tz/");
-        listsUrl.add("http://www.hnisvc.com/news/tzgg/tz/");
-        listsUrl.add("http://www.hnisvc.com/news/tzgg/tz/");
+//        listsUrl.add("http://www.hnisvc.com/news/tzgg/tz/");
+//        listsUrl.add("http://www.hnisvc.com/news/tzgg/tz/");
+//        listsUrl.add("http://www.hnisvc.com/news/tzgg/tz/");
+//        listsUrl.add("http://www.hnisvc.com/news/tzgg/tz/");
 
-        listsName.add(" 通知公告");
-        listsName.add("学校新闻");
-        listsName.add("院部新闻");
-        listsName.add("媒体开大");
+//        listsName.add(" 通知公告");
+//        listsName.add("学校新闻");
+//        listsName.add("院部新闻");
+//        listsName.add("媒体开大");
         mLinearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayout.VERTICAL,false);
         rvMsgList.setLayoutManager(mLinearLayoutManager);
         adapter = new NewsAdapter(getActivity(),R.layout.list_item_news,listTen);
         rvMsgList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        rl_more.setOnClickListener(new View.OnClickListener() {
-                                       @Override
-                                       public void onClick(View view) {
 
-                                           Intent intent = new Intent(getActivity(), BaseWebActivity4.class);
-                                           intent.putExtra("appUrl",listsUrl.get(position));
-                                           //intent.putExtra("appName",listsName.get(position));
-                                           startActivity(intent);
-
-                                       }
-                                   }
-        );
+//        rl_more.setOnClickListener(new View.OnClickListener() {
+//                                       @Override
+//                                       public void onClick(View view) {
+//
+//                                           Intent intent = new Intent(getActivity(), BaseWebActivity4.class);
+//                                           intent.putExtra("appUrl",listsUrl.get(position));
+//                                           //intent.putExtra("appName",listsName.get(position));
+//                                           startActivity(intent);
+//
+//                                       }
+//                                   }
+//        );
         return v;
     }
 

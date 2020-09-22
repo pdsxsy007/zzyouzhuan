@@ -142,7 +142,7 @@ import me.samlss.lighter.parameter.LighterParameter;
 import me.samlss.lighter.parameter.MarginOffset;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
-import sun.misc.BASE64Encoder;
+//import sun.misc.BASE64Encoder;
 
 import static com.zhihu.matisse.internal.utils.PathUtils.getPath;
 import static io.cordova.zhihuiyouzhuan.UrlRes.HOME_URL;
@@ -263,7 +263,7 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
                 .ready()
                 .go(appServiceUrl);
 
-
+       Log.e("获取到的url",appServiceUrl);
         mAgentWeb.getWebCreator().getWebView().setOverScrollMode(WebView.OVER_SCROLL_NEVER);
         mAgentWeb.getJsInterfaceHolder().addJavaObject("android",new AndroidInterface());
 
@@ -722,6 +722,14 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
             WebSettings webSettings = view.getSettings();
             webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);//把html中的内容放大webview等宽的一列中
             webSettings.setJavaScriptEnabled(true);//支持js
+            webSettings.setJavaScriptCanOpenWindowsAutomatically(true);//允许js 弹窗
+            // 启用或禁用WebView访问文件数据。
+            webSettings.setAllowFileAccess(true);
+            // 是否允许通过file url加载的Javascript读取本地文件，默认值 false
+            webSettings.setAllowFileAccessFromFileURLs(true);
+            // 是否允许通过file url加载的Javascript读取全部资源(包括文件,http,https)，默认值 false
+            webSettings.setAllowUniversalAccessFromFileURLs(false);
+            webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
             webSettings.setBuiltInZoomControls(true); // 显示放大缩小
             webSettings.setSupportZoom(true); // 可以缩放
             webSettings.setUseWideViewPort(true);  //为图片添加放大缩小功能
@@ -1288,6 +1296,7 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
 
             Log.i("Info", "Thread:" + Thread.currentThread());
         }
+
         /**手机调用拍照*/
         @JavascriptInterface
         public void nativeGetPicture(final String invocationLogAppId,final String invocationLogFunction,float ratio) {
@@ -1308,7 +1317,12 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
             Log.i("Info", "Thread:" + Thread.currentThread());
         }
 
+        @JavascriptInterface
+        public void nativeCASign(final String invocationLogAppId,final String invocationLogFunction,final String signDataId,final String sendTime,final boolean closeFlag) {
+            Log.e("nativeCASign","nativeCASign执行了");
 
+
+        }
         /**手机定位坐标*/
         @JavascriptInterface
         public void getLocation() {
@@ -1344,6 +1358,7 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
             });
 
         }
+
     }
 
 
@@ -2193,39 +2208,39 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
             }
         }*/
         if (requestCode == 3) {
-            if (resultCode == RESULT_OK) {
-                //将Uri图片转换为Bitmap
-                try {
-                    Bitmap bitmap = BitmapFactory.decodeStream(this.getContentResolver().openInputStream(uritempFile));
-                    File file = new File(String.valueOf(uritempFile));
-//                    File file = saveBitmapFile2(bitmap);
-                    String image = getFileBase64(file);
-                    NaturePicBean naturePicBean = new NaturePicBean();
-                    naturePicBean.setSuccess(true);
-                    naturePicBean.setMessage("成功");
-                    naturePicBean.setImage(image);
-                    Gson gson = new Gson();
-                    String s = gson.toJson(naturePicBean);
-                    String jsonParams = s;
-
-                    String url2 = "javascript:getNativeGetPicture('"+jsonParams+"')";
-                    Log.e("url",url2);
-                    mAgentWeb.getWebCreator().getWebView().evaluateJavascript(url2, new ValueCallback<String>() {
-                        @Override
-                        public void onReceiveValue(String value) {
-                            //此处为 js 返回的结果
-                            Log.e("value",value);
-                        }
-                    });
-//                        upImg(file);
-                }catch (Exception e){
-                       e.printStackTrace();
-
-                       Log.e("出错了", e.getMessage());
-                }
-
-
-            }
+//            if (resultCode == RESULT_OK) {
+//                //将Uri图片转换为Bitmap
+//                try {
+//                    Bitmap bitmap = BitmapFactory.decodeStream(this.getContentResolver().openInputStream(uritempFile));
+//                    File file = new File(String.valueOf(uritempFile));
+////                    File file = saveBitmapFile2(bitmap);
+//                    String image = getFileBase64(file);
+//                    NaturePicBean naturePicBean = new NaturePicBean();
+//                    naturePicBean.setSuccess(true);
+//                    naturePicBean.setMessage("成功");
+//                    naturePicBean.setImage(image);
+//                    Gson gson = new Gson();
+//                    String s = gson.toJson(naturePicBean);
+//                    String jsonParams = s;
+//
+//                    String url2 = "javascript:getNativeGetPicture('"+jsonParams+"')";
+//                    Log.e("url",url2);
+//                    mAgentWeb.getWebCreator().getWebView().evaluateJavascript(url2, new ValueCallback<String>() {
+//                        @Override
+//                        public void onReceiveValue(String value) {
+//                            //此处为 js 返回的结果
+//                            Log.e("value",value);
+//                        }
+//                    });
+////                        upImg(file);
+//                }catch (Exception e){
+//                       e.printStackTrace();
+//
+//                       Log.e("出错了", e.getMessage());
+//                }
+//
+//
+//            }
         }
 
 
@@ -2322,24 +2337,24 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
         bitmap = BitmapFactory.decodeFile(srcPath, newOpts);
         return compressImage(bitmap);//压缩好比例大小后再进行质量压缩
     }
-    public static String getFileBase64(File file){
-                InputStream in = null;
-                byte[] data = null;
-                try{
-                        in = new FileInputStream(file);
-                       data = new byte[in.available()];
-                      in.read(data);
-                    }catch (IOException e){
-                         e.printStackTrace();
-                  }finally {
-                        if (in != null) {
-                                try {    in.close();    } catch (IOException e) {    e.printStackTrace();    }
-                            }
-                    }
-              //Base64编码
-               BASE64Encoder encoder = new BASE64Encoder();
-               return encoder.encode(data);
-          }
+//    public static String getFileBase64(File file){
+//                InputStream in = null;
+//                byte[] data = null;
+//                try{
+//                        in = new FileInputStream(file);
+//                       data = new byte[in.available()];
+//                      in.read(data);
+//                    }catch (IOException e){
+//                         e.printStackTrace();
+//                  }finally {
+//                        if (in != null) {
+//                                try {    in.close();    } catch (IOException e) {    e.printStackTrace();    }
+//                            }
+//                    }
+//              //Base64编码
+//               BASE64Encoder encoder = new BASE64Encoder();
+//               return encoder.encode(data);
+//          }
     private void netInsertPortal(final String insertPortalAccessLog) {
         String imei = MobileInfoUtils.getIMEI(this);
         OkGo.<String>post(HOME_URL + UrlRes.Four_Modules)

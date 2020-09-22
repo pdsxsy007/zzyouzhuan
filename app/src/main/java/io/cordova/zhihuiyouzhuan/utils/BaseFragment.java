@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.lzy.okgo.OkGo;
 
 import butterknife.ButterKnife;
+import io.cordova.zhihuiyouzhuan.R;
 
 /**
  * Fragment的基类
@@ -23,6 +24,7 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = View.inflate(getActivity(), getLayoutResID(), null);
         ButterKnife.bind(this, view);
+
         initView(view);
         initData();
         initListener();

@@ -21,6 +21,7 @@ import java.util.List;
 
 import io.cordova.zhihuiyouzhuan.R;
 import io.cordova.zhihuiyouzhuan.adapter.NewsAdapter;
+import io.cordova.zhihuiyouzhuan.adapter.YsNewsAdapter2;
 import io.cordova.zhihuiyouzhuan.bean.ItemNewsBean2;
 import io.cordova.zhihuiyouzhuan.web.BaseWebActivity4;
 
@@ -29,7 +30,7 @@ import io.cordova.zhihuiyouzhuan.web.BaseWebActivity4;
 public class SimpleCardFragment extends Fragment {
     private String json;
     RecyclerView rvMsgList;
-    private NewsAdapter adapter;
+    private YsNewsAdapter2 adapter;
     private LinearLayoutManager mLinearLayoutManager;
     public  List<ItemNewsBean2> listTen = new ArrayList<>();
     private int position = 0;
@@ -69,33 +70,22 @@ public class SimpleCardFragment extends Fragment {
         View v = inflater.inflate(R.layout.fr_simple_card, null);
         //String jsonmy= (String) getArguments().get("jsonmy");
         rvMsgList = v.findViewById(R.id.rv_msg_list);
-        rl_more = v.findViewById(R.id.rl_more);
+
         listTen.clear();
       /*  listsUrl.clear();
         listsName.clear();*/
         List<ItemNewsBean2> list = jsonStringConvertToList(json, ItemNewsBean2[].class);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 4; i++) {
             listTen.add(list.get(i));
         }
 
 
         mLinearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayout.VERTICAL,false);
         rvMsgList.setLayoutManager(mLinearLayoutManager);
-        adapter = new NewsAdapter(getActivity(),R.layout.list_item_news,listTen);
+        adapter = new YsNewsAdapter2(getActivity(),R.layout.item_ys_news2,listTen,s1);
         rvMsgList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        rl_more.setOnClickListener(new View.OnClickListener() {
-                                       @Override
-                                       public void onClick(View view) {
 
-                                           Intent intent = new Intent(getActivity(), BaseWebActivity4.class);
-                                           intent.putExtra("appUrl",s);
-                                           //intent.putExtra("appName",s1);
-                                           startActivity(intent);
-
-                                       }
-                                   }
-        );
         return v;
     }
 

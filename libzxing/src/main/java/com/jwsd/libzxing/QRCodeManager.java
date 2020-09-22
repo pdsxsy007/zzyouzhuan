@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.jwsd.libzxing.activity.CaptureActivity;
 import com.jwsd.libzxing.encoding.EncodingUtils;
@@ -129,6 +130,7 @@ public class QRCodeManager extends IQRCodeStrategy {
         }
         if (requestCode == curRequestCode && resultCode == Activity.RESULT_OK) {//成功
             String result = data.getStringExtra("result");
+            Log.e("获取到",result);
             if (TextUtils.isEmpty(result)) {
                 callback.onError(new Throwable("result is null"));
             } else {

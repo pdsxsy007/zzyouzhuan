@@ -22,8 +22,10 @@ import static java.util.Base64.getEncoder;
 public class AesEncryptUtile {
 
 	/** 加密用的Key 可以用26个字母和数字组成 此处使用AES-128-CBC加密模式，key需要为16位。 */
-	public static String key = "dc1f0cd873f94dea";
-//	public static String key = "1234567890123456";
+//	public static String key = "c3a71cee302247cf";
+//	public static String key = "dc1f0cd873f94dea";
+
+	public static String key = "1234567890123456";
 
 	private static String ivParameter = "0392039203920300";
 	private static AesEncryptUtile instance = null;

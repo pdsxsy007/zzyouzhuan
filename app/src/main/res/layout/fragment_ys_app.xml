@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/ys_title_bg"
+
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="@dimen/dp70">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            app:title="应用服务"
+            android:fitsSystemWindows="true"
+            app:titleTextColor="@color/white"
+            android:layout_height="40dp">
+
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center|right"
+                android:id="@+id/search_iv"
+                android:layout_marginRight="@dimen/dp15"
+                android:src="@mipmap/search_ys" />
+        </android.support.v7.widget.Toolbar>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/ban_bai"
+        android:layout_marginTop="-15dp"
+        android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/dp15"
+            android:id="@+id/service_rc"
+            android:layout_height="match_parent">
+
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</LinearLayout>

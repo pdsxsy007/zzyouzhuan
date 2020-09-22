@@ -3,15 +3,18 @@ package io.cordova.zhihuiyouzhuan.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
-import java.net.URLEncoder;
 import java.util.List;
 
 import io.cordova.zhihuiyouzhuan.R;
+import io.cordova.zhihuiyouzhuan.UrlRes;
 import io.cordova.zhihuiyouzhuan.bean.ItemNewsBean2;
+import io.cordova.zhihuiyouzhuan.bean.YsNewsBean;
 import io.cordova.zhihuiyouzhuan.utils.MyApp;
 import io.cordova.zhihuiyouzhuan.web.BaseWebActivity4;
 
@@ -19,40 +22,43 @@ import io.cordova.zhihuiyouzhuan.web.BaseWebActivity4;
  * Created by Administrator on 2019/4/17 0017.
  */
 
-public class NewsAdapter extends CommonAdapter<ItemNewsBean2> {
+public class YsNewsAdapter2 extends CommonAdapter<ItemNewsBean2> {
     Context mContext;
-    public NewsAdapter(Context context, int layoutId, List<ItemNewsBean2> datas) {
+    String mtitle;
+    public YsNewsAdapter2(Context context, int layoutId, List<ItemNewsBean2> datas, String title) {
         super(context, layoutId, datas);
         mContext = context;
+        mtitle = title;
     }
 
     @Override
-    protected void convert(ViewHolder holder, final ItemNewsBean2 s, int position) {
+    protected void convert(ViewHolder holder, final ItemNewsBean2 obj, int position) {
 
-        holder.setText(R.id.tv_left,s.getNewsTitle());
-        holder.setText(R.id.tv_right,s.getNewsDate());
+        holder.setText(R.id.news_type,mtitle);
+        holder.setText(R.id.news_title,obj.getNewsTitle());
+        holder.setText(R.id.time_tv,obj.getNewsDate());
 
-        holder.setOnClickListener(R.id.ll_item, new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MyApp.getInstance(), BaseWebActivity4.class);
 
                 //intent.putExtra("appId","");
-                String url = s.getNewsHref();
+                String url = obj.getNewsHref();
                 if(url.contains("index/../")){
-                   url = url.replace("index/..","");
+                    url = url.replace("index/..","");
                 }else{
-                    url = s.getNewsHref();
+                    url = obj.getNewsHref();
                 }
                 intent.putExtra("appUrl", url);
-                intent.putExtra("appName",s.getNewsTitle());
+                intent.putExtra("appName",obj.getNewsTitle());
                 mContext.startActivity(intent);
-            }
-        });
-
-
 
 
     }
+        });
+    }
 
-}
+    }
+
+

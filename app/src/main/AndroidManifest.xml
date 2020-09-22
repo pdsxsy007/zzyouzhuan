@@ -75,7 +75,7 @@
     <application
         android:name=".utils.MyApp"
         android:allowBackup="true"
-        android:icon="@drawable/logo"
+        android:icon="@mipmap/ys_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
@@ -389,6 +389,10 @@
         <activity android:name=".activity.MyToDoMsg2Activity" />
         <activity android:name=".activity.TeacherDataActivity" />
         <activity android:name=".YsMainActivity" />
+        <activity android:name=".activity.YsLoginActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.YsNewsActivity" />
 
         <!-- Required -->
         <meta-data android:name="JPUSH_APPKEY" android:value="8e26b2df5578286abecb8d74"/>

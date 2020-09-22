@@ -221,6 +221,7 @@ public class Main2Activity extends BaseActivity3 implements PermissionsUtil.IPer
     }
 
 
+
     private void checkIsUpdatepwd(String userId) {
         OkGo.<String>post(UrlRes.HOME_URL + UrlRes.newStudentUpdatePwdStateUrl)
                 .params("userName",userId)

@@ -304,8 +304,9 @@ public class LoginActivity2 extends LoginBaseActivity implements GestureDetector
        ;
         try {
             String imei =  AesEncryptUtile.encrypt((String) SPUtils.get(this, "imei", ""), key);
-            OkGo.<String>get(UrlRes.HOME2_URL +"/cas/casApiLoginController")
-                    .params("openid","jh6000000904057679")
+//            OkGo.<String>get(UrlRes.HOME2_URL +"/cas/casApiLoginController")
+            OkGo.<String>get("http://192.168.30.30:8080" +"/cas/casApiLoginController")
+                    .params("openid","123456")
 //                    .params("openid","123456zxd")
                     .params("username",s1)
                     .params("password",s2)

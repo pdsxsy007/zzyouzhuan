@@ -18,7 +18,7 @@
         android:id="@+id/iv_logo"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/logo"
+        android:src="@mipmap/ys_logo"
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop"
         android:layout_marginTop="85dp"/>
@@ -51,7 +51,7 @@
         android:textColor="@color/black"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:text="河南信息统计职业学院"
+        android:text="郑州幼儿师范高等专科学校"
         android:textSize="@dimen/sp14"
         android:layout_marginBottom="60dp"/>
 

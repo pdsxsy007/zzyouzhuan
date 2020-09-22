@@ -13,7 +13,7 @@
         style="@style/view2"/>
 
     <LinearLayout
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/ll_msg_off"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,9 +53,9 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp12"></View>
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp12"></View>-->
 
     <LinearLayout
         android:visibility="gone"
@@ -115,9 +115,9 @@
             android:layout_marginLeft="16dp"
             android:src="@mipmap/switch_close_icon"/>
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp12"></View>
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp12"></View>-->
 
 
     <LinearLayout
