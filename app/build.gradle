@@ -42,21 +42,28 @@ android {
         ]
         multiDexEnabled true
     }
-    buildTypes {
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            storeFile file("F:/jks/zhys.jks")
+            storePassword "123456"
+            keyAlias "youshi"
+            keyPassword "123456"
         }
 
     }
 
-    signingConfigs {
+    buildTypes {
+
         debug {
-//            storeFile file('jh_qingyuan.jks')
-//            storePassword "123456"
-//            keyAlias "jh_qingyuan"
-//            keyPassword "123456"
+            signingConfig signingConfigs.release
         }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+
     }
 
 
