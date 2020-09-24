@@ -6,212 +6,243 @@
     android:background="@color/white"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:background="@mipmap/ys_logo_bg"
-        android:orientation="vertical"
-        android:layout_height="240dp">
+        android:layout_height="match_parent"
 
+        >
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:layout_centerInParent="true"
             >
-            <ImageView
-                android:layout_width="50dp"
-                android:src="@mipmap/ys_logo"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@mipmap/ys_logo_bg"
+                android:orientation="vertical"
+                android:layout_height="240dp">
 
-                android:layout_height="50dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_centerInParent="true"
+                    >
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:src="@mipmap/ys_logo"
 
-            <TextView
-                android:layout_width="wrap_content"
+                        android:layout_height="50dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:text="i 幼专"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp16" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/ban_bai"
+                android:orientation="vertical"
+                android:layout_marginTop="-50dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="欢迎登录"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp20"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:layout_marginTop="@dimen/dp30"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="欢迎登录郑州幼师智慧门户系统，请填写您的用户信息"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="请输入登录账号"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp16"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:layout_marginTop="@dimen/dp50"
+                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    >
+                    <requestFocus />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/dp15"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:layout_marginRight="@dimen/dp15"
+                        android:background="@null"
+                        android:hint="默认账号为学号或者工号"
+                        android:id="@+id/user_et"
+                        android:textSize="@dimen/sp14"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:background="#ccc"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="请输入密码"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp16"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    >
+                    <requestFocus />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/dp15"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:layout_marginRight="@dimen/dp15"
+                        android:background="@null"
+                        android:hint="密码"
+                        android:id="@+id/psd_et"
+                        android:inputType="textPassword"
+                        android:textSize="@dimen/sp14"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:background="#ccc"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="忘记密码？"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:background="@drawable/log_bg"
+                    android:text="登 录"
+                    android:textStyle="bold"
+                    android:id="@+id/login_btn"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/dp30"
+                    android:layout_height="@dimen/dp40" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp10"
-                android:text="i 幼专"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp16" />
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dp30"
+                tools:ignore="WebViewLayout">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/dp5"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:layout_alignParentRight="true"
+                        >
+                        <ImageView
+                            android:layout_width="@dimen/dp30"
+                            android:layout_height="@dimen/dp30"
+                            android:src="@mipmap/face_logo"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textSize="@dimen/sp16"
+                            android:text="刷脸登录"
+                            android:layout_marginTop="@dimen/dp5"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dp5"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:layout_alignParentLeft="true"
+                        >
+                        <ImageView
+                            android:layout_width="@dimen/dp30"
+                            android:layout_height="@dimen/dp30"
+                            android:src="@mipmap/weixin_log"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textSize="@dimen/sp16"
+                            android:text="微信登录"
+                            android:layout_marginTop="@dimen/dp5"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+                <WebView
+                    android:visibility="gone"
+                    android:id="@+id/webView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></WebView>
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:background="@drawable/ban_bai"
-        android:orientation="vertical"
-        android:layout_marginTop="-50dp"
-        android:layout_weight="1"
-        android:layout_height="0dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="欢迎登录"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp20"
-            android:textStyle="bold"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginRight="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp30"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="match_parent"
-            android:text="欢迎登录郑州幼师智慧门户系统，请填写您的用户信息"
-            android:textColor="@color/black"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginRight="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="请输入登录账号"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp16"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginRight="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp50"
-            android:layout_height="wrap_content" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_marginRight="@dimen/dp15"
-            android:background="@null"
-            android:hint="默认账号为学号或者工号"
-            android:id="@+id/user_et"
-            android:textSize="@dimen/sp14"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginRight="@dimen/dp15"
-            android:background="#ccc"
-            android:layout_marginTop="@dimen/dp5"
-            android:layout_height="1dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="请输入密码"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp16"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginRight="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp20"
-            android:layout_height="wrap_content" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_marginRight="@dimen/dp15"
-            android:background="@null"
-            android:hint="密码"
-            android:id="@+id/psd_et"
-            android:inputType="textPassword"
-            android:textSize="@dimen/sp14"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginRight="@dimen/dp15"
-            android:background="#ccc"
-            android:layout_marginTop="@dimen/dp5"
-            android:layout_height="1dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="忘记密码？"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginRight="@dimen/dp15"
-            android:layout_height="wrap_content" />
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginRight="@dimen/dp15"
-            android:background="@drawable/log_bg"
-            android:text="登 录"
-            android:textStyle="bold"
-            android:id="@+id/login_btn"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/dp30"
-            android:layout_height="@dimen/dp40" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/dp10"
-        tools:ignore="WebViewLayout">
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/dp5"
-            >
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:layout_alignParentRight="true"
-                >
-                <ImageView
-                    android:layout_width="@dimen/dp30"
-                    android:layout_height="@dimen/dp30"
-                    android:src="@mipmap/face_logo"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="@dimen/sp16"
-                    android:text="刷脸登录"
-                    android:layout_marginTop="@dimen/dp5"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp5"
-            >
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:layout_alignParentLeft="true"
-                >
-                <ImageView
-                    android:layout_width="@dimen/dp30"
-                    android:layout_height="@dimen/dp30"
-                    android:src="@mipmap/weixin_log"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="@dimen/sp16"
-                    android:text="微信登录"
-                    android:layout_marginTop="@dimen/dp5"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-        </RelativeLayout>
-        <WebView
-            android:visibility="gone"
-            android:id="@+id/webView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></WebView>
-    </LinearLayout>
 </LinearLayout>
