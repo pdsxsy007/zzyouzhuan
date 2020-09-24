@@ -68,7 +68,7 @@ public class YsLoginActivity extends LoginBaseActivity {
 
 
         super.initData();
-        ImmersionBar.with(YsLoginActivity.this).keyboardEnable(false).statusBarDarkFont(false).init();
+        ImmersionBar.with(YsLoginActivity.this).keyboardEnable(true).statusBarDarkFont(false).init();
         update = getIntent().getStringExtra("update");
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
