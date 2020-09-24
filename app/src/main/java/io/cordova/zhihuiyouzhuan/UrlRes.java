@@ -22,7 +22,7 @@ public class UrlRes {
     //新闻
 //    public static String news_url = "http://yd.hntyxxh.com:18083/portal/thirdNews/newsDetail";
 
-    public static String news_url = "http://192.168.30.31:8081/portal/mobile/portalNews/getNewsFromRedis";
+    public static String news_url = "/portal/mobile/portalNews/getNewsFromRedis";
 
     /*tgt  相关*/
     public static String HOME2_URL ="http://39.101.203.225:8080";
@@ -272,7 +272,7 @@ public class UrlRes {
      */
     public static String getNewsDetailsUrl= "/portal/mobile/news/getNewsDetails";
 
-    public static String getOaworkflow= "/portal/mobile/tdoa/oaworkflow";
+    public static String getOaworkflow= "/portal/mobile/dlgzOA/oaworkflow";
 
 
     //获取新闻类型

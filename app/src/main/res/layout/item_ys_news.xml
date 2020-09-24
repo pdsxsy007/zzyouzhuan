@@ -22,6 +22,7 @@
         android:textSize="@dimen/sp14"
         android:textColor="@color/black"
         android:text="我是新闻大标题大标题"
+        android:maxLines="2"
         android:layout_height="0dp" />
 
 

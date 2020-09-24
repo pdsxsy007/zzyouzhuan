@@ -1,10 +1,12 @@
 package io.cordova.zhihuiyouzhuan.fragment.home;
 
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -16,6 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import io.cordova.zhihuiyouzhuan.R;
 import io.cordova.zhihuiyouzhuan.UrlRes;
+import io.cordova.zhihuiyouzhuan.activity.AppSearchActivity;
 import io.cordova.zhihuiyouzhuan.adapter.YsAppAdapter2;
 import io.cordova.zhihuiyouzhuan.adapter.YsAppAdapter3;
 import io.cordova.zhihuiyouzhuan.bean.YsAppBean;
@@ -35,7 +38,8 @@ public class YsBanshiFragment extends BaseFragment {
     @BindView(R.id.service_rc)
     RecyclerView serviceRc;
 
-
+    @BindView(R.id.search_iv)
+    ImageView searchIv;
     YsAppBean ysAppBean;
     List<YsAppBean.Obj.Apps> objList1;
     YsAppAdapter3 ysAppAdapter;
@@ -85,6 +89,11 @@ public class YsBanshiFragment extends BaseFragment {
                         Log.e("错误", response.body());
                     }
                 });
-
+        searchIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), AppSearchActivity.class));
+            }
+        });
     }
 }

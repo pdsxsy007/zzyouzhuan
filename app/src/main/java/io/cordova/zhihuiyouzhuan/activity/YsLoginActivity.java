@@ -26,6 +26,7 @@ import io.cordova.zhihuiyouzhuan.UrlRes;
 import io.cordova.zhihuiyouzhuan.YsMainActivity;
 import io.cordova.zhihuiyouzhuan.bean.Constants;
 import io.cordova.zhihuiyouzhuan.bean.LoginBean;
+import io.cordova.zhihuiyouzhuan.bean.UserMsgBean;
 import io.cordova.zhihuiyouzhuan.utils.AesEncryptUtile;
 import io.cordova.zhihuiyouzhuan.utils.CookieUtils;
 import io.cordova.zhihuiyouzhuan.utils.LoginBaseActivity;
@@ -170,7 +171,7 @@ public class YsLoginActivity extends LoginBaseActivity {
                                     stringBuffer.append(psdEt.getText().toString());
                                     SPUtil.getInstance().putString(Constants.SP_A_P, MD5Util.md5Password(stringBuffer.toString()));
                                     Log.e("login","tgt = "+ tgt + "  ,userName  = " + userName);
-
+                                    netWorkUserMsg();
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -185,6 +186,52 @@ public class YsLoginActivity extends LoginBaseActivity {
 
     }
 
+    /**个人信息*/
+    UserMsgBean userMsgBean;
+    private void netWorkUserMsg() {
+        try {
+            OkGo.<String>post(UrlRes.HOME_URL + UrlRes.User_Msg)
+                    .params("userId", (String) SPUtils.get(MyApp.getInstance(),"userId",""))
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onSuccess(Response<String> response) {
+                            Log.e("result1",response.body()+"   --防空");
+                            userMsgBean = JSON.parseObject(response.body(), UserMsgBean.class);
+                            if (userMsgBean.isSuccess()) {
+                                if(null != userMsgBean.getObj()) {
+
+                                    StringBuilder sb = new StringBuilder();
+                                    if(userMsgBean.getObj().getModules().getRolecodes()!= null){
+
+                                        if (userMsgBean.getObj().getModules().getRolecodes().size() > 0){
+                                            for (int i = 0; i < userMsgBean.getObj().getModules().getRolecodes().size(); i++) {
+                                                sb.append(userMsgBean.getObj().getModules().getRolecodes().get(i).getRoleCode()).append(",");
+                                            }
+                                            String ss = sb.substring(0, sb.lastIndexOf(","));
+                                            Log.e("TAG",ss);
+                                            SPUtils.put(MyApp.getInstance(),"rolecodes",ss);
+                                        }
+
+                                    }
+
+                                     /*获取头像*/
+
+//                                    netWorkMyData();//我的信息
+                                }else {
+//                                    llMyData.setVisibility(View.GONE);
+                                }
+
+
+
+                            }
+                        }
+                    });
+        }catch (Exception e){
+
+        }
+
+
+    }
     private WebViewClient mWebViewClient = new WebViewClient() {
         @Override
         public void onPageFinished(WebView view, String url) {

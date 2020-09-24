@@ -14,24 +14,23 @@ import java.util.List;
 import io.cordova.zhihuiyouzhuan.R;
 import io.cordova.zhihuiyouzhuan.UrlRes;
 import io.cordova.zhihuiyouzhuan.bean.YsNewsBean;
-import io.cordova.zhihuiyouzhuan.bean.YsNewsMoreBean;
 import io.cordova.zhihuiyouzhuan.web.BaseWebActivity4;
 
 /**
  * Created by Administrator on 2019/4/17 0017.
  */
 
-public class YsMoreNewsAdapter extends CommonAdapter<YsNewsMoreBean.Obj> {
+public class YsNewsMainAdapter extends CommonAdapter<YsNewsBean.Obj.PortalNewsList> {
     Context mContext;
     String mtitle;
-    public YsMoreNewsAdapter(Context context, int layoutId, List<YsNewsMoreBean.Obj> datas, String title) {
+    public YsNewsMainAdapter(Context context, int layoutId, List<YsNewsBean.Obj.PortalNewsList> datas, String title) {
         super(context, layoutId, datas);
         mContext = context;
         mtitle = title;
     }
 
     @Override
-    protected void convert(ViewHolder holder, final YsNewsMoreBean.Obj obj, int position) {
+    protected void convert(ViewHolder holder, final YsNewsBean.Obj.PortalNewsList obj, int position) {
 
         holder.setText(R.id.news_type,mtitle);
         holder.setText(R.id.news_title,obj.getPortalNewsTitle());

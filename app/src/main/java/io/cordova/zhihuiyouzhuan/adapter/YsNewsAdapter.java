@@ -40,6 +40,14 @@ public class YsNewsAdapter extends CommonAdapter<YsNewsBean.Obj.PortalNewsList> 
 
         ImageView imageView = holder.getView(R.id.news_img);
         Glide.with(mContext).load(UrlRes.HOME3_URL + obj.getPortalNewsTitleImg()).into(imageView);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext,BaseWebActivity4.class);
+                intent.putExtra("appUrl","http://39.101.203.225:8081/portal/dist/native/newsDetail.html?id=" + obj.getPortalNewsId());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     }

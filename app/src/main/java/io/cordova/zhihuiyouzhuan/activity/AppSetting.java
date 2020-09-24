@@ -34,6 +34,7 @@ import io.cordova.zhihuiyouzhuan.bean.Constants;
 import io.cordova.zhihuiyouzhuan.bean.CurrencyBean;
 import io.cordova.zhihuiyouzhuan.bean.UpdateBean;
 import io.cordova.zhihuiyouzhuan.fingerprint.FingerprintHelper;
+import io.cordova.zhihuiyouzhuan.utils.ActivityUtils;
 import io.cordova.zhihuiyouzhuan.utils.BaseActivity2;
 import io.cordova.zhihuiyouzhuan.utils.DensityUtil;
 import io.cordova.zhihuiyouzhuan.utils.FinishActivity;
@@ -352,11 +353,8 @@ public class AppSetting extends BaseActivity2 implements FingerprintHelper.Simpl
                     @Override
                     public void onSuccess(Response<String> response) {
                         Log.e("netExit", response.body());
-                        initRelieve();
-//                        getActivity().getSupportFragmentManager()
-//                                .beginTransaction()
-//                                .addToBackStack(null)  //将当前fragment加入到返回栈中
-//                                .replace(R.id.container, new HomePreFragment()).commit();SPUtils.clear(getApplicationContext());
+//                        initRelieve();
+
                         String update = (String) SPUtils.get(MyApp.getInstance(), "update", "");
                         String home01 = (String) SPUtils.get(MyApp.getInstance(), "home01", "");
                         String home02 = (String) SPUtils.get(MyApp.getInstance(), "home02", "");
@@ -413,38 +411,40 @@ public class AppSetting extends BaseActivity2 implements FingerprintHelper.Simpl
                         intent.putExtra("refreshService","dongtai");
                         intent.setAction("refresh");
                         sendBroadcast(intent);
-                        Intent intent1 = new Intent(AppSetting.this,Main2Activity.class);
+                        Intent intent1 = new Intent(AppSetting.this,YsLoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent1);
-                        finish();
 
-                        FinishActivity.clearActivity();
+
+
+                        ActivityUtils.getActivityManager().finishAllActivity();
 
                     }
                 });
 
     }
 
-    CurrencyBean currencyBean;
-    private void initRelieve() {
-        OkGo.<String>get(UrlRes.HOME4_URL + UrlRes.Relieve_Registration_Id)
-                .tag("Jpush")
-                .params("userId", (String) SPUtils.get(MyApp.getInstance(), "userId", ""))
-                .params("portalEquipmentMemberEquipmentId", (String) SPUtils.get(MyApp.getInstance(), "registrationId", ""))
-                .execute(new StringCallback() {
-                    @Override
-                    public void onSuccess(Response<String> response) {
-                        Log.e("JPush", response.body());
-                        currencyBean = JSON.parseObject(response.body(), CurrencyBean.class);
-                        if (currencyBean.isSuccess()) {
-                            //解除绑定成功
-                            Log.e("JPush", currencyBean.getMsg());
-                        } else {
-                            //解除绑定失败
-                            Log.e("JPush", currencyBean.getMsg());
-                        }
-                    }
-                });
-    }
+//    CurrencyBean currencyBean;
+//    private void initRelieve() {
+//        OkGo.<String>get(UrlRes.HOME4_URL + UrlRes.Relieve_Registration_Id)
+//                .tag("Jpush")
+//                .params("userId", (String) SPUtils.get(MyApp.getInstance(), "userId", ""))
+//                .params("portalEquipmentMemberEquipmentId", (String) SPUtils.get(MyApp.getInstance(), "registrationId", ""))
+//                .execute(new StringCallback() {
+//                    @Override
+//                    public void onSuccess(Response<String> response) {
+//                        Log.e("JPush", response.body());
+//                        currencyBean = JSON.parseObject(response.body(), CurrencyBean.class);
+//                        if (currencyBean.isSuccess()) {
+//                            //解除绑定成功
+//                            Log.e("JPush", currencyBean.getMsg());
+//                        } else {
+//                            //解除绑定失败
+//                            Log.e("JPush", currencyBean.getMsg());
+//                        }
+//                    }
+//                });
+//    }
 
 
     @Override

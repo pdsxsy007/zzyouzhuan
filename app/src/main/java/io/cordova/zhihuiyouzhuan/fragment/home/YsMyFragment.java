@@ -1,9 +1,12 @@
 package io.cordova.zhihuiyouzhuan.fragment.home;
 
+import android.content.Intent;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -12,6 +15,8 @@ import com.bumptech.glide.signature.StringSignature;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -22,7 +27,9 @@ import java.util.UUID;
 import butterknife.BindView;
 import io.cordova.zhihuiyouzhuan.R;
 import io.cordova.zhihuiyouzhuan.UrlRes;
+import io.cordova.zhihuiyouzhuan.activity.AppSetting;
 import io.cordova.zhihuiyouzhuan.adapter.YsAppAdapter;
+import io.cordova.zhihuiyouzhuan.bean.MyCollectionBean;
 import io.cordova.zhihuiyouzhuan.bean.UserMsgBean;
 import io.cordova.zhihuiyouzhuan.bean.YsAppBean;
 import io.cordova.zhihuiyouzhuan.utils.BaseFragment;
@@ -45,7 +52,8 @@ public class YsMyFragment extends BaseFragment {
     TextView mameTv;
     @BindView(R.id.department)
     TextView departmentTv;
-
+    @BindView(R.id.tv_app_setting)
+    ImageView settingIv;
     YsAppBean ysAppBean;
     List<YsAppBean.Obj.Apps> objList1;
     List<YsAppBean.Obj.Apps> objList2;
@@ -55,6 +63,9 @@ public class YsMyFragment extends BaseFragment {
     RecyclerView wdRc;
     @BindView(R.id.cg_rc)
     RecyclerView cgRc;
+
+    @BindView(R.id.cg_sc)
+    RecyclerView scRc;
 
     @Override
     public int getLayoutResID() {
@@ -75,37 +86,47 @@ public class YsMyFragment extends BaseFragment {
         objList2 = new ArrayList<>();
         getAppList();
         getAppList2();
+        netWorkMyCollection();
+        settingIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), AppSetting.class));
+            }
+        });
     }
 
-    /**个人信息*/
+    /**
+     * 个人信息
+     */
     UserMsgBean userMsgBean;
+
     private void netWorkUserMsg() {
         try {
             OkGo.<String>post(UrlRes.HOME_URL + UrlRes.User_Msg)
-                    .params("userId", (String) SPUtils.get(MyApp.getInstance(),"userId",""))
+                    .params("userId", (String) SPUtils.get(MyApp.getInstance(), "userId", ""))
                     .execute(new StringCallback() {
                         @Override
                         public void onSuccess(Response<String> response) {
-                            Log.e("result1",response.body()+"   --防空");
+                            Log.e("result1", response.body() + "   --防空");
                             userMsgBean = JSON.parseObject(response.body(), UserMsgBean.class);
                             if (userMsgBean.isSuccess()) {
-                                if(null != userMsgBean.getObj()) {
-                                    if(userMsgBean.getObj().getModules().getMemberOtherDepartment() != null){
+                                if (null != userMsgBean.getObj()) {
+                                    if (userMsgBean.getObj().getModules().getMemberOtherDepartment() != null) {
                                         departmentTv.setText(userMsgBean.getObj().getModules().getMemberOtherDepartment());
                                     }
 
                                     mameTv.setText(userMsgBean.getObj().getModules().getMemberNickname());
 
                                     StringBuilder sb = new StringBuilder();
-                                    if(userMsgBean.getObj().getModules().getRolecodes()!= null){
+                                    if (userMsgBean.getObj().getModules().getRolecodes() != null) {
 
-                                        if (userMsgBean.getObj().getModules().getRolecodes().size() > 0){
+                                        if (userMsgBean.getObj().getModules().getRolecodes().size() > 0) {
                                             for (int i = 0; i < userMsgBean.getObj().getModules().getRolecodes().size(); i++) {
                                                 sb.append(userMsgBean.getObj().getModules().getRolecodes().get(i).getRoleCode()).append(",");
                                             }
                                             String ss = sb.substring(0, sb.lastIndexOf(","));
-                                            Log.e("TAG",ss);
-                                            SPUtils.put(MyApp.getInstance(),"rolecodes",ss);
+                                            Log.e("TAG", ss);
+                                            SPUtils.put(MyApp.getInstance(), "rolecodes", ss);
                                         }
 
                                     }
@@ -113,16 +134,15 @@ public class YsMyFragment extends BaseFragment {
                                      /*获取头像*/
                                     netGetUserHead();
 //                                    netWorkMyData();//我的信息
-                                }else {
+                                } else {
 //                                    llMyData.setVisibility(View.GONE);
                                 }
-
 
 
                             }
                         }
                     });
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -132,8 +152,8 @@ public class YsMyFragment extends BaseFragment {
     private void netGetUserHead() {
 //        ?memberId=admin&pwd=d632eeeb1548643667060e18656e0112
         try {
-            String pwd = URLEncoder.encode(userMsgBean.getObj().getModules().getMemberPwd(),"UTF-8");
-            String ingUrl =  UrlRes.HOME2_URL + "/authentication/public/getHeadImg?memberId="+userMsgBean.getObj().getModules().getMemberUsername()+"&pwd="+pwd;
+            String pwd = URLEncoder.encode(userMsgBean.getObj().getModules().getMemberPwd(), "UTF-8");
+            String ingUrl = UrlRes.HOME2_URL + "/authentication/public/getHeadImg?memberId=" + userMsgBean.getObj().getModules().getMemberUsername() + "&pwd=" + pwd;
 
             Glide.with(getActivity())
                     .load(ingUrl)
@@ -147,25 +167,25 @@ public class YsMyFragment extends BaseFragment {
     }
 
 
-    private void getAppList(){
-        OkGo.<String>get(UrlRes.HOME_URL +UrlRes.Service_APP_List)
+    private void getAppList() {
+        OkGo.<String>get(UrlRes.HOME_URL + UrlRes.Service_APP_List)
 
-                .params("Version","1.0")
-                .params("userId",(String) SPUtils.get(MyApp.getInstance(),"userId",""))
-                .params("rolecodes",(String) SPUtils.get(MyApp.getInstance(),"rolecodes",""))
+                .params("Version", "1.0")
+                .params("userId", (String) SPUtils.get(MyApp.getInstance(), "userId", ""))
+                .params("rolecodes", (String) SPUtils.get(MyApp.getInstance(), "rolecodes", ""))
 
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        ysAppBean =  JsonUtil.parseJson(response.body(),YsAppBean.class);
+                        ysAppBean = JsonUtil.parseJson(response.body(), YsAppBean.class);
 
                         List<YsAppBean.Obj> objList = ysAppBean.getObj();
-                        for(int i=0;i<objList.size();i++){
-                            if(objList.get(i).getModulesCode().equals("wd_wdxx")){
+                        for (int i = 0; i < objList.size(); i++) {
+                            if (objList.get(i).getModulesCode().equals("wd_wdxx")) {
                                 objList1.addAll(objList.get(i).getApps());
                             }
                         }
-                        ysAppAdapter = new YsAppAdapter(getActivity(),R.layout.item_app,objList1);
+                        ysAppAdapter = new YsAppAdapter(getActivity(), R.layout.item_app, objList1);
                         wdRc.setAdapter(ysAppAdapter);
                         ysAppAdapter.notifyDataSetChanged();
                     }
@@ -173,30 +193,30 @@ public class YsMyFragment extends BaseFragment {
                     @Override
                     public void onError(Response<String> response) {
                         super.onError(response);
-                        Log.e("错误",response.body());
+                        Log.e("错误", response.body());
                     }
                 });
     }
 
-    private void getAppList2(){
-        OkGo.<String>get(UrlRes.HOME_URL +UrlRes.Service_APP_List)
+    private void getAppList2() {
+        OkGo.<String>get(UrlRes.HOME_URL + UrlRes.Service_APP_List)
 
-                .params("Version","1.0")
-                .params("userId",(String) SPUtils.get(MyApp.getInstance(),"userId",""))
-                .params("rolecodes",(String) SPUtils.get(MyApp.getInstance(),"rolecodes",""))
+                .params("Version", "1.0")
+                .params("userId", (String) SPUtils.get(MyApp.getInstance(), "userId", ""))
+                .params("rolecodes", (String) SPUtils.get(MyApp.getInstance(), "rolecodes", ""))
 
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        ysAppBean =  JsonUtil.parseJson(response.body(),YsAppBean.class);
+                        ysAppBean = JsonUtil.parseJson(response.body(), YsAppBean.class);
 
                         List<YsAppBean.Obj> objList = ysAppBean.getObj();
-                        for(int i=0;i<objList.size();i++){
-                            if(objList.get(i).getModulesCode().equals("wd_wdcg")){
+                        for (int i = 0; i < objList.size(); i++) {
+                            if (objList.get(i).getModulesCode().equals("wd_wdcg")) {
                                 objList2.addAll(objList.get(i).getApps());
                             }
                         }
-                        ysAppAdapter2 = new YsAppAdapter(getActivity(),R.layout.item_app,objList2);
+                        ysAppAdapter2 = new YsAppAdapter(getActivity(), R.layout.item_app, objList2);
                         cgRc.setAdapter(ysAppAdapter2);
                         ysAppAdapter2.notifyDataSetChanged();
                     }
@@ -204,8 +224,88 @@ public class YsMyFragment extends BaseFragment {
                     @Override
                     public void onError(Response<String> response) {
                         super.onError(response);
-                        Log.e("错误",response.body());
+                        Log.e("错误", response.body());
                     }
                 });
+    }
+
+
+    /**
+     * 我的收藏列表
+     */
+    MyCollectionBean collectionBean;
+
+    private void netWorkMyCollection() {
+        try {
+            OkGo.<String>post(UrlRes.HOME_URL + UrlRes.My_Collection)
+                    .params("userId", (String) SPUtils.get(MyApp.getInstance(), "userId", ""))
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onSuccess(Response<String> response) {
+                            Log.e("s", response.toString());
+                            collectionBean = JSON.parseObject(response.body(), MyCollectionBean.class);
+                            if (collectionBean.isSuccess()) {
+                                if (collectionBean.getObj() != null) {
+                                    if (collectionBean.getObj().size() > 0) {
+
+
+                                        setCollectionList();
+
+                                    } else {
+
+
+                                    }
+                                } else {
+
+                                }
+
+                            } else {
+
+//                            T.showShort(MyApp.getInstance(), collectionBean.getMsg());
+                            }
+                        }
+
+                        @Override
+                        public void onError(Response<String> response) {
+                            super.onError(response);
+
+
+                        }
+                    });
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    /**
+     * 我的收藏列表填充
+     */
+    CommonAdapter<MyCollectionBean.ObjBean> collectionAdapter;
+
+    private void setCollectionList() {
+        scRc.setLayoutManager(new GridLayoutManager(getActivity(), 4) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        });
+        collectionAdapter = new CommonAdapter<MyCollectionBean.ObjBean>(getActivity(), R.layout.item_service_app, collectionBean.getObj()) {
+            @Override
+            protected void convert(ViewHolder holder, MyCollectionBean.ObjBean objBean, int position) {
+
+
+                holder.setText(R.id.tv_app_name, objBean.getAppName());
+                Glide.with(getActivity())
+                        .load(UrlRes.HOME3_URL + objBean.getAppImages())
+                        .error(getResources().getColor(R.color.app_bg))
+                        .into((ImageView) holder.getView(R.id.iv_app_icon));
+                   /*appIntranet  1 需要内网*/
+
+            }
+        };
+
+
+        scRc.setAdapter(collectionAdapter);
     }
 }

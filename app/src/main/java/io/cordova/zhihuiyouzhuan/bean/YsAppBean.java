@@ -55,7 +55,7 @@ public class YsAppBean {
     private String count;
 
     private List<Obj> obj;
-    public class Obj{
+    public static class Obj{
 
         private int modulesId;
         private String modulesCode;
@@ -158,7 +158,7 @@ public class YsAppBean {
         private List<Apps> apps;
         private String modulesParentName;
 
-        public class Apps{
+        public static class Apps{
 
             private int appId;
             private String appName;

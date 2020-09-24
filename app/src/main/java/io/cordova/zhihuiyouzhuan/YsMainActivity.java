@@ -90,6 +90,7 @@ import io.cordova.zhihuiyouzhuan.fragment.home.Home1PreFragment;
 import io.cordova.zhihuiyouzhuan.fragment.home.MyPre2Fragment;
 import io.cordova.zhihuiyouzhuan.fragment.home.SecondPreFragment;
 import io.cordova.zhihuiyouzhuan.fragment.home.ServicePreFragment;
+import io.cordova.zhihuiyouzhuan.fragment.home.StudentHomeFragment;
 import io.cordova.zhihuiyouzhuan.fragment.home.TeacherHomeFragment;
 import io.cordova.zhihuiyouzhuan.fragment.home.YsAppFragment;
 import io.cordova.zhihuiyouzhuan.fragment.home.YsBanshiFragment;
@@ -140,7 +141,7 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
     String insertPortalAccessLog ;
     TeacherHomeFragment homePreFragment;
 
-
+    StudentHomeFragment studentHomeFragment;
     YsBanshiFragment findPreFragment;
     YsAppFragment servicePreFragment;
 
@@ -187,9 +188,9 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
 
         mainRadioGroup.check(R.id.rb_home_page);
 
-        StatusBarUtil.setStatusBarFontIconDark(this,TYPE_M);
 
-        getDownLoadType();
+        registerBoradcastReceiver();
+//        getDownLoadType();
     }
 
 
@@ -197,7 +198,52 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
 
 
 
+    /**个人信息*/
+    UserMsgBean userMsgBean;
+    private void netWorkUserMsg() {
+        try {
+            OkGo.<String>post(UrlRes.HOME_URL + UrlRes.User_Msg)
+                    .params("userId", (String) SPUtils.get(MyApp.getInstance(),"userId",""))
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onSuccess(Response<String> response) {
+                            Log.e("result1",response.body()+"   --防空");
+                            userMsgBean = JSON.parseObject(response.body(), UserMsgBean.class);
+                            if (userMsgBean.isSuccess()) {
+                                if(null != userMsgBean.getObj()) {
 
+                                    StringBuilder sb = new StringBuilder();
+                                    if(userMsgBean.getObj().getModules().getRolecodes()!= null){
+
+                                        if (userMsgBean.getObj().getModules().getRolecodes().size() > 0){
+                                            for (int i = 0; i < userMsgBean.getObj().getModules().getRolecodes().size(); i++) {
+                                                sb.append(userMsgBean.getObj().getModules().getRolecodes().get(i).getRoleCode()).append(",");
+                                            }
+                                            String ss = sb.substring(0, sb.lastIndexOf(","));
+                                            Log.e("TAG",ss);
+                                            SPUtils.put(MyApp.getInstance(),"rolecodes",ss);
+                                        }
+
+                                    }
+
+                                     /*获取头像*/
+
+//                                    netWorkMyData();//我的信息
+                                }else {
+//                                    llMyData.setVisibility(View.GONE);
+                                }
+
+
+
+                            }
+                        }
+                    });
+        }catch (Exception e){
+
+        }
+
+
+    }
 
 
 
@@ -416,7 +462,7 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
                 switch (checkedId) {
 
                     case R.id.rb_home_page:
-                        StatusBarUtil.setStatusBarFontIconDark(YsMainActivity.this,TYPE_M);
+//                        StatusBarUtil.setStatusBarFontIconDark(YsMainActivity.this,TYPE_M);
 
                         flag = 0;
                         showFragment(0);
@@ -484,7 +530,7 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
         });
     }
 
-
+    String  role = (String) SPUtils.get(MyApp.getInstance(),"rolecodes","");
 
     public void showFragment(int i) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -494,12 +540,23 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
 
 
             case 0:
-                if (homePreFragment != null)
-                    ft.show(homePreFragment);
-                else {
-                    homePreFragment = new TeacherHomeFragment();
-                    ft.add(R.id.frameLayout, homePreFragment);
+
+                if(role.contains("student")){
+                    if(studentHomeFragment != null){
+                        ft.show(studentHomeFragment);
+                    }else{
+                        studentHomeFragment = new StudentHomeFragment();
+                        ft.add(R.id.frameLayout, studentHomeFragment);
+                    }
+                }else{
+                    if (homePreFragment != null)
+                        ft.show(homePreFragment);
+                    else {
+                        homePreFragment = new TeacherHomeFragment();
+                        ft.add(R.id.frameLayout, homePreFragment);
+                    }
                 }
+
                 break;
             case 1:
                 // 如果fragment1已经存在则将其显示出来
@@ -564,6 +621,9 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
     private void hideFragments(FragmentTransaction ft2) {
         if (homePreFragment != null)
             ft2.hide(homePreFragment);
+        if(studentHomeFragment!= null){
+            ft2.hide(studentHomeFragment);
+        }
         if (servicePreFragment != null)
             ft2.hide(servicePreFragment);
         if (findPreFragment != null)
@@ -875,7 +935,8 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
             Log.e("l1的值",l1+"");
             if(l1>=3){
                 netWorkLogin();
-//                netWorkUserMsg();
+
+                netWorkUserMsg();
             }else {
                 webView.setWebViewClient(mWebViewClient);
                 webView.loadUrl(UrlRes.HOME2_URL+"/portal/login/appLogin");
@@ -931,7 +992,7 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
 
         OkGo.<String>get(UrlRes.HOME2_URL +"/cas/casApiLoginController")
 //                .params("openid","123456zxd")
-                .params("openid","jh6000000904057679")
+                .params("openid","123456")
                 .params("username",s1)
                 .params("password",s2)
                 .execute(new StringCallback() {
@@ -969,10 +1030,10 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
                                 e.printStackTrace();
                             }
                         }else {
-                            SPUtils.put(getApplicationContext(),"username","");
-                            Intent intent = new Intent(MyApp.getInstance(),YsMainActivity.class);
-                            startActivity(intent);
-                            finish();
+//                            SPUtils.put(getApplicationContext(),"username","");
+//                            Intent intent = new Intent(MyApp.getInstance(),YsMainActivity.class);
+//                            startActivity(intent);
+//                            finish();
                         }
                     }
                 });
@@ -1213,7 +1274,7 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
         MyApp.isrRunIng = "0";
 
 
-//        unregisterReceiver(broadcastReceiver);
+        unregisterReceiver(broadcastReceiver);
     }
 
     private WebViewClient mWebViewClient = new WebViewClient() {
@@ -1236,7 +1297,7 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
 
             if (url.contains(UrlRes.HOME2_URL + "/cas/login")) {
                 if (StringUtils.isEmpty((String)SPUtils.get(MyApp.getInstance(),"username",""))){
-                    Intent intent = new Intent(getApplicationContext(),LoginActivity2.class);
+                    Intent intent = new Intent(getApplicationContext(),YsLoginActivity.class);
                     startActivity(intent);
                     finish();
 
@@ -1251,7 +1312,7 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             if (url.contains(UrlRes.HOME2_URL + "/cas/login")) {
                 if (StringUtils.isEmpty((String)SPUtils.get(MyApp.getInstance(),"username",""))){
-                    Intent intent = new Intent(getApplicationContext(),LoginActivity2.class);
+                    Intent intent = new Intent(getApplicationContext(),YsLoginActivity.class);
                     startActivity(intent);
                     finish();
 
@@ -1449,4 +1510,5 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
     public void onPermissionsDenied(int requestCode, String... permission) {
 
     }
+
 }

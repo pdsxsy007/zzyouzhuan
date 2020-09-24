@@ -171,7 +171,7 @@ public class SplashActivity extends AppCompatActivity {
                                 SPUtils.put(getApplicationContext(),"TGC","");
                                 SPUtils.put(getApplicationContext(),"username","");
                                 SPUtils.put(getApplicationContext(),"password","");
-                                Intent intent = new Intent(MyApp.getInstance(),YsMainActivity.class);
+                                Intent intent = new Intent(MyApp.getInstance(),YsLoginActivity.class);
                                 startActivity(intent);
                                 finish();
 
@@ -181,9 +181,7 @@ public class SplashActivity extends AppCompatActivity {
                         @Override
                         public void onError(Response<String> response) {
                             super.onError(response);
-                            Intent intent = new Intent(MyApp.getInstance(),YsMainActivity.class);
-                            startActivity(intent);
-                            finish();
+
 
                         }
                     });

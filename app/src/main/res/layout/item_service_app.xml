@@ -2,22 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/sp8"
     android:id="@+id/ll_click"
-
+    android:layout_marginTop="@dimen/dp10"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="80dp"
         android:layout_height="wrap_content">
         <RelativeLayout
-            android:layout_width="80dp"
-            android:layout_height="55dp"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
             android:layout_centerInParent="true"
             >
             <ImageView
                 android:id="@+id/iv_app_icon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_centerInParent="true"
                 />
 
@@ -68,9 +67,7 @@
         android:textSize="@dimen/sp14"
         android:textColor="@color/black2"
         android:layout_marginTop="@dimen/dp5"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:maxLines="1"
+        android:maxLength="5"
         android:text="所发生的"/>
 
 </LinearLayout>
