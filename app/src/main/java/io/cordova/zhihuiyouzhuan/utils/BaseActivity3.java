@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.gyf.immersionbar.ImmersionBar;
 import com.lzy.okgo.OkGo;
 
 import butterknife.ButterKnife;
+import io.cordova.zhihuiyouzhuan.R;
 
 
 /**
@@ -24,6 +26,7 @@ public abstract class BaseActivity3 extends AppCompatActivity {
         setContentView(getResourceId());
         ButterKnife.bind(this);
         initView();
+        ImmersionBar.with(this).navigationBarColor(R.color.colorPrimary).init();
         initHandler();
         initData();
         initListener();

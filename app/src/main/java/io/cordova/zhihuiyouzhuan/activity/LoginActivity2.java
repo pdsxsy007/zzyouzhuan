@@ -35,6 +35,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.gyf.immersionbar.ImmersionBar;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -59,6 +60,7 @@ import cn.jiguang.verifysdk.api.JVerifyUIConfig;
 import cn.jiguang.verifysdk.api.VerifyListener;
 import io.cordova.zhihuiyouzhuan.R;
 import io.cordova.zhihuiyouzhuan.UrlRes;
+import io.cordova.zhihuiyouzhuan.YsMainActivity;
 import io.cordova.zhihuiyouzhuan.bean.CheckWXBindBean;
 import io.cordova.zhihuiyouzhuan.bean.FaceBean2;
 import io.cordova.zhihuiyouzhuan.bean.LoginBean;
@@ -143,7 +145,7 @@ public class LoginActivity2 extends LoginBaseActivity implements GestureDetector
     @Override
     protected void initSystemBar() {
         super.initSystemBar();
-//提交啊
+
         gestureDetector = new GestureDetector(this,this);
         tv_find_pwd.setOnClickListener(new View.OnClickListener() {
             @Override

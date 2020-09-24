@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:orientation="vertical"
         android:background="@mipmap/ys_person_bg">
       <LinearLayout
@@ -18,7 +18,7 @@
               android:layout_width="20dp"
               android:layout_height="20dp"
               android:layout_marginRight="@dimen/dp15"
-              android:layout_marginTop="@dimen/dp10"
+              android:layout_marginTop="@dimen/dp30"
               android:id="@+id/tv_app_setting"
               android:src="@mipmap/ys_setting" />
       </LinearLayout>

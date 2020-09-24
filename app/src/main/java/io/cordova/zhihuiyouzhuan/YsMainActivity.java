@@ -52,6 +52,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.gyf.immersionbar.ImmersionBar;
 import com.jwsd.libzxing.OnQRCodeListener;
 import com.jwsd.libzxing.QRCodeManager;
 import com.lzy.okgo.OkGo;
@@ -177,6 +178,7 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
     @Override
     protected void initView() {
         super.initView();
+        ImmersionBar.with(YsMainActivity.this).keyboardEnable(false).statusBarDarkFont(true).init();
         MyApp.isrRunIng = "1";
 //        showState();
 
@@ -463,7 +465,7 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
 
                     case R.id.rb_home_page:
 //                        StatusBarUtil.setStatusBarFontIconDark(YsMainActivity.this,TYPE_M);
-
+                        ImmersionBar.with(YsMainActivity.this).keyboardEnable(false).statusBarDarkFont(true).init();
                         flag = 0;
                         showFragment(0);
                         mIndex = 0;
@@ -473,7 +475,8 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
                         }
                         break;
                     case R.id.rb_recommend:
-//                        StatusBarUtil.setStatusBarColor(YsMainActivity.this,getResources().getColor(R.color.app_theme_color));
+                        ImmersionBar.with(YsMainActivity.this).keyboardEnable(false).statusBarDarkFont(false).init();
+
                         flag = 1;
                         mIndex = 1;
                         showFragment(1);
@@ -483,6 +486,7 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
                         }
                         break;
                     case R.id.rb_shopping:
+                        ImmersionBar.with(YsMainActivity.this).keyboardEnable(false).statusBarDarkFont(false).init();
 //                        StatusBarUtil.setStatusBarColor(YsMainActivity.this,getResources().getColor(R.color.app_theme_color));
                         flag = 2;
                         mIndex = 2;
@@ -493,6 +497,7 @@ public class YsMainActivity extends BaseActivity3 implements PermissionsUtil.IPe
                         }
                         break;
                     case R.id.rb_my:
+                        ImmersionBar.with(YsMainActivity.this).keyboardEnable(false).statusBarDarkFont(true, 0.2f).navigationBarColor(R.color.colorPrimary).init();
 //                        StatusBarUtil.setStatusBarColor(YsMainActivity.this,getResources().getColor(R.color.app_theme_color));
                         //if (isLogin && netState.isConnect(getApplicationContext())){
                         if (isLogin ){

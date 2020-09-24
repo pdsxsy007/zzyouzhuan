@@ -2,10 +2,12 @@ package io.cordova.zhihuiyouzhuan.utils;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gyf.immersionbar.ImmersionBar;
 import com.lzy.okgo.OkGo;
 
 import butterknife.ButterKnife;
@@ -19,7 +21,8 @@ import io.cordova.zhihuiyouzhuan.R;
  * @author wangdh
  */
 public abstract class BaseFragment extends Fragment {
-    public int netStateType = 0;
+    protected View statusBarView;
+    protected Toolbar toolbar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = View.inflate(getActivity(), getLayoutResID(), null);
@@ -28,6 +31,9 @@ public abstract class BaseFragment extends Fragment {
         initView(view);
         initData();
         initListener();
+        statusBarView = view.findViewById(R.id.status_bar_view);
+        toolbar = view.findViewById(R.id.toolbar);
+        fitsLayoutOverlap();
         /*if (!netState.isConnect(getActivity()) ){
             ToastUtils.showToast(getActivity(),"网络异常!");
             netStateType = 1;
@@ -78,4 +84,13 @@ public abstract class BaseFragment extends Fragment {
         super.onHiddenChanged(hidden);
 
     }
+
+    private void fitsLayoutOverlap() {
+        if (statusBarView != null) {
+            ImmersionBar.setStatusBarView(this, statusBarView);
+        } else {
+            ImmersionBar.setTitleBar(this, toolbar);
+        }
+    }
+
 }

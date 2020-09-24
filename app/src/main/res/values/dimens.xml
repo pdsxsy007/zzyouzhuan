@@ -33,6 +33,7 @@
     <dimen name="sp15">15dp</dimen>
     <dimen name="sp16">16dp</dimen>
     <dimen name="sp18">18dp</dimen>
+    <dimen name="sp20">20dp</dimen>
     <dimen name="sp8">8dp</dimen>
     <dimen name="dp14">14dp</dimen>
     <dimen name="dp40">40dp</dimen>
