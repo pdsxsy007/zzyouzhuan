@@ -148,30 +148,6 @@ public class YsLoginActivity extends LoginBaseActivity {
                                     SPUtils.put(getApplicationContext(),"password",s2);
 
 
-
-//                                    if(update != null){
-                                        Intent intent = new Intent(YsLoginActivity.this,YsMainActivity.class);
-                                        startActivity(intent);
-                                        finish();
-//                                    }else {
-//                                        finish();
-//                                    }
-
-                                    Intent intent7 = new Intent();
-                                    intent.putExtra("refreshService","dongtai");
-                                    intent.setAction("refresh2");
-                                    sendBroadcast(intent7);
-
-                                    Intent intent2 = new Intent();
-                                    intent2.setAction("refresh3");
-                                    sendBroadcast(intent2);
-
-                                    //本地存储账号用户指纹登录时显示账号信息
-                                    StringBuffer stringBuffer = new StringBuffer();
-                                    SPUtil.getInstance().putString(Constants.SP_ACCOUNT, userEt.getText().toString());
-                                    stringBuffer.append( userEt.getText().toString());
-                                    stringBuffer.append(psdEt.getText().toString());
-                                    SPUtil.getInstance().putString(Constants.SP_A_P, MD5Util.md5Password(stringBuffer.toString()));
                                     Log.e("login","tgt = "+ tgt + "  ,userName  = " + userName);
                                     netWorkUserMsg();
                                 } catch (Exception e) {
@@ -212,6 +188,26 @@ public class YsLoginActivity extends LoginBaseActivity {
                                             String ss = sb.substring(0, sb.lastIndexOf(","));
                                             Log.e("TAG",ss);
                                             SPUtils.put(MyApp.getInstance(),"rolecodes",ss);
+
+                                            Intent intent = new Intent(YsLoginActivity.this,YsMainActivity.class);
+                                            startActivity(intent);
+                                            finish();
+
+                                            Intent intent7 = new Intent();
+                                            intent.putExtra("refreshService","dongtai");
+                                            intent.setAction("refresh2");
+                                            sendBroadcast(intent7);
+
+                                            Intent intent2 = new Intent();
+                                            intent2.setAction("refresh3");
+                                            sendBroadcast(intent2);
+
+                                            //本地存储账号用户指纹登录时显示账号信息
+                                            StringBuffer stringBuffer = new StringBuffer();
+                                            SPUtil.getInstance().putString(Constants.SP_ACCOUNT, userEt.getText().toString());
+                                            stringBuffer.append( userEt.getText().toString());
+                                            stringBuffer.append(psdEt.getText().toString());
+                                            SPUtil.getInstance().putString(Constants.SP_A_P, MD5Util.md5Password(stringBuffer.toString()));
                                         }
 
                                     }
