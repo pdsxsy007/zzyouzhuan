@@ -64,7 +64,7 @@ public class SystemMsgActivity extends BaseActivity2 {
     protected void initView() {
         super.initView();
         msgType = getIntent().getStringExtra("msgType");
-        tvTitle.setText(msgType);
+        tvTitle.setText("系统消息");
         mLinearLayoutManager = new LinearLayoutManager(this, LinearLayout.VERTICAL,false);
         rvMsgList.setLayoutManager(mLinearLayoutManager);
         ViewUtils.createLoadingDialog(this);

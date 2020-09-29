@@ -158,6 +158,12 @@ public class UrlRes {
      */
     public static String updatePasswordUrl="/authentication/api/casMember/updatePassword";
 
+
+    /**
+     * 使用记录
+     */
+    public static String accessHistory="/portal/api/accessHistory/findHalfYearAccess";
+
     /**
      * 获取下载类型
      */

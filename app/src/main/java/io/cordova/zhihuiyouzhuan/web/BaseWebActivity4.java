@@ -62,6 +62,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.google.gson.Gson;
+import com.gyf.immersionbar.ImmersionBar;
 import com.just.agentweb.AbsAgentWebSettings;
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
@@ -111,6 +112,7 @@ import butterknife.OnClick;
 import gdut.bsx.share2.Share2;
 import gdut.bsx.share2.ShareContentType;
 import io.cordova.zhihuiyouzhuan.R;
+import io.cordova.zhihuiyouzhuan.activity.MoreAppActivity;
 import io.cordova.zhihuiyouzhuan.bean.NaturePicBean;
 import io.cordova.zhihuiyouzhuan.utils.BitmapUtils;
 import io.cordova.zhihuiyouzhuan.utils.PermissionsUtil;
@@ -163,12 +165,12 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
     protected AgentWeb mAgentWeb;
 
     @BindView(R.id.webView)
-    TestWebView webView; 
+    TestWebView webView;
 
     @BindView(R.id.layout_close)
     RelativeLayout rvClose;
 
-     @BindView(R.id.tv_title)
+    @BindView(R.id.tv_title)
     TextView mTitleTextView;
     @BindView(R.id.rl_no)
     RelativeLayout rl_no;
@@ -203,14 +205,10 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
-
-
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
         ButterKnife.bind(this);
+        ImmersionBar.with(BaseWebActivity4.this).keyboardEnable(true).statusBarDarkFont(false).init();
         gestureDetector = new GestureDetector(this,this);
         mLinearLayout = (LinearLayout) this.findViewById(R.id.container);
         rvClose.setVisibility(View.GONE);
@@ -263,7 +261,7 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
                 .ready()
                 .go(appServiceUrl);
 
-       Log.e("获取到的url",appServiceUrl);
+        Log.e("获取到的url",appServiceUrl);
         mAgentWeb.getWebCreator().getWebView().setOverScrollMode(WebView.OVER_SCROLL_NEVER);
         mAgentWeb.getJsInterfaceHolder().addJavaObject("android",new AndroidInterface());
 
@@ -528,11 +526,11 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
                     @Override
                     public void onSuccess(Response<String> response) {
                         //handleResponse(response);
-                            Log.e("Tag",response.body());
-                            appTime = JSON.parseObject(response.body(),BaseBean.class);
-                            if (appTime.isSuccess()) {
-                                isFirst = false;
-                            }
+                        Log.e("Tag",response.body());
+                        appTime = JSON.parseObject(response.body(),BaseBean.class);
+                        if (appTime.isSuccess()) {
+                            isFirst = false;
+                        }
                     }
 
                     @Override
@@ -670,9 +668,9 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
-            if (!mAgentWeb.back()){
-                BaseWebActivity4.this.finish();
-            }
+                if (!mAgentWeb.back()){
+                    BaseWebActivity4.this.finish();
+                }
                 break;
             case R.id.iv_close:
                 BaseWebActivity4.this.finish();
@@ -1002,7 +1000,7 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
             //   do you work
 
             if (newProgress == 100 && start > 0){
-                 end =   Calendar.getInstance().getTimeInMillis();
+                end =   Calendar.getInstance().getTimeInMillis();
                 time =(end - start) +"";
             }
 
@@ -1684,7 +1682,7 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
         if (EasyPermissions.hasPermissions(BaseWebActivity4.this, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             // Have permission, do the thing
 
-          testTakePhoto();
+            testTakePhoto();
             ;//调用相机照相
         } else {//没有相应权限，获取相机权限
             // Ask for one permission
@@ -1711,7 +1709,7 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
 
         final String items[] = {"打开相机", "打开相册"};
         builder = new AlertDialog.Builder(this);  //先得到构造器
-       builder.setIcon(R.mipmap.ic_launcher);//设置图标，图片id即可
+        builder.setIcon(R.mipmap.ic_launcher);//设置图标，图片id即可
 
         builder.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
             @Override
@@ -1752,7 +1750,7 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
 
 
         //指定相机拍照的存储路径
-         mPhotoFile = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
+        mPhotoFile = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
         try {
             //判断文件是否存在，存在删除，不存在创建
             if (mPhotoFile.exists()){
@@ -1833,7 +1831,7 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
         return bmp;
     }
     int REQUEST_CODE_CHOOSE = 2;
-   //打开相册
+    //打开相册
     private void getAlbum() {
 
 
@@ -2066,11 +2064,11 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
                 for (int i = 0; i < pathList.size(); i++) {
                     String extension = pathList.get(i);
 
-                        extension = extension.substring(extension.lastIndexOf("."));
-                        extension = extension.replace(".","");
-                        Bitmap bitmap = BitmapFactory.decodeFile(pathList.get(i));
+                    extension = extension.substring(extension.lastIndexOf("."));
+                    extension = extension.replace(".","");
+                    Bitmap bitmap = BitmapFactory.decodeFile(pathList.get(i));
                     Bitmap scaledBitmap = BitmapUtils.compressByWidth(bitmap, 300);
-                        String image = BitmapUtils.bitmapToBase64(scaledBitmap);
+                    String image = BitmapUtils.bitmapToBase64(scaledBitmap);
                     //String image = getFileBase64(file);
                     NaturePicBean naturePicBean = new NaturePicBean();
                     naturePicBean.setSuccess(true);
@@ -2337,7 +2335,7 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
         bitmap = BitmapFactory.decodeFile(srcPath, newOpts);
         return compressImage(bitmap);//压缩好比例大小后再进行质量压缩
     }
-//    public static String getFileBase64(File file){
+    //    public static String getFileBase64(File file){
 //                InputStream in = null;
 //                byte[] data = null;
 //                try{

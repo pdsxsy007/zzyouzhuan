@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
+import com.gyf.immersionbar.ImmersionBar;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -32,7 +33,9 @@ import java.util.List;
 import butterknife.BindView;
 import io.cordova.zhihuiyouzhuan.R;
 import io.cordova.zhihuiyouzhuan.UrlRes;
+import io.cordova.zhihuiyouzhuan.utils.BaseActivity;
 import io.cordova.zhihuiyouzhuan.utils.BaseActivity2;
+import io.cordova.zhihuiyouzhuan.utils.BaseActivity3;
 import io.cordova.zhihuiyouzhuan.utils.StringUtils;
 import io.cordova.zhihuiyouzhuan.utils.T;
 import io.cordova.zhihuiyouzhuan.utils.ViewUtils;
@@ -48,7 +51,7 @@ import io.cordova.zhihuiyouzhuan.utils.SPUtils;
  * jjjjs
  */
 
-public class AppSearchActivity extends BaseActivity2 {
+public class AppSearchActivity extends BaseActivity {
     @BindView(R.id.tv_title)
     TextView tvTitle;
      @BindView(R.id.tv_result)
@@ -70,6 +73,8 @@ public class AppSearchActivity extends BaseActivity2 {
     TagFlowLayout flSearchCache;
     boolean isLogin =false;
     private int flag = 0;
+    @BindView(R.id.search_btn)
+    TextView searchTv;
     @Override
     protected int getResourceId() {
         return R.layout.app_search_activity;
@@ -77,7 +82,7 @@ public class AppSearchActivity extends BaseActivity2 {
 
     @Override
     protected void initView() {
-
+        ImmersionBar.with(AppSearchActivity.this).keyboardEnable(true).statusBarDarkFont(false).init();
         super.initView();
         isLogin = !StringUtils.isEmpty((String)SPUtils.get(MyApp.getInstance(),"username",""));
         tvTitle.setText("应用搜索");
@@ -128,6 +133,22 @@ public class AppSearchActivity extends BaseActivity2 {
             }
         });
 
+        searchTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                    if (StringUtils.getEditTextData(tvSearch).isEmpty()){
+                        T.showShort(MyApp.getInstance(),"请输入搜索关键字");
+                    }else {
+                        ViewUtils.saveSearchHistory(StringUtils.getEditTextData(tvSearch));
+                        netWorkSearchApp();
+                        flag = 1;
+                        rl_history.setVisibility(View.GONE);
+                        flSearchCache.setVisibility(View.GONE);
+
+            }
+        }
+        });
         tvSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -200,7 +221,7 @@ public class AppSearchActivity extends BaseActivity2 {
                 holder.setText(R.id.tv_app_come,"来源 ：" +listBean.getSystemName());
                 holder.setVisible(R.id.iv_del,true);
                 if (listBean.getAppIntranet()==1){
-                    holder.setVisible(R.id.iv_del,true);
+                    holder.setVisible(R.id.iv_del,false);
                     Glide.with(AppSearchActivity.this)
                             .load(R.mipmap.nei_icon)
                             .error(R.mipmap.nei_icon)
@@ -211,7 +232,7 @@ public class AppSearchActivity extends BaseActivity2 {
 
                 if (!isLogin) {
                     if (listBean.getAppLoginFlag()==0){
-                        holder.setVisible(R.id.iv_lock_close,true);
+                        holder.setVisible(R.id.iv_lock_close,false);
                         Glide.with(AppSearchActivity.this)
                                 .load(R.mipmap.lock_icon)
                                 .error(R.mipmap.lock_icon)

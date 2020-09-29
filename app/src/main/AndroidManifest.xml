@@ -99,7 +99,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="io.cordova.zhihuiyingyuan.SplashActivity"/>
+                <action android:name="io.cordova.zhihuiyouzhuan.SplashActivity"/>
             </intent-filter>
 
 
@@ -404,6 +404,7 @@
             android:screenOrientation="portrait"
             />
         <activity android:name=".activity.YsNewsActivity" />
+        <activity android:name=".activity.MoreAppActivity" />
 
         <!-- Required -->
         <meta-data android:name="JPUSH_APPKEY" android:value="8e26b2df5578286abecb8d74"/>

@@ -33,9 +33,11 @@ import io.cordova.zhihuiyouzhuan.bean.MyCollectionBean;
 import io.cordova.zhihuiyouzhuan.bean.UserMsgBean;
 import io.cordova.zhihuiyouzhuan.bean.YsAppBean;
 import io.cordova.zhihuiyouzhuan.utils.BaseFragment;
+import io.cordova.zhihuiyouzhuan.utils.GridPagerSnapHelper;
 import io.cordova.zhihuiyouzhuan.utils.JsonUtil;
 import io.cordova.zhihuiyouzhuan.utils.MyApp;
 import io.cordova.zhihuiyouzhuan.utils.SPUtils;
+import io.cordova.zhihuiyouzhuan.web.BaseWebActivity4;
 import io.cordova.zhihuiyouzhuan.widget.XCRoundImageView;
 
 
@@ -168,6 +170,7 @@ public class YsMyFragment extends BaseFragment {
 
 
     private void getAppList() {
+        objList1.clear();
         OkGo.<String>get(UrlRes.HOME_URL + UrlRes.Service_APP_List)
 
                 .params("Version", "1.0")
@@ -199,6 +202,7 @@ public class YsMyFragment extends BaseFragment {
     }
 
     private void getAppList2() {
+        objList2.clear();
         OkGo.<String>get(UrlRes.HOME_URL + UrlRes.Service_APP_List)
 
                 .params("Version", "1.0")
@@ -284,12 +288,14 @@ public class YsMyFragment extends BaseFragment {
     CommonAdapter<MyCollectionBean.ObjBean> collectionAdapter;
 
     private void setCollectionList() {
-        scRc.setLayoutManager(new GridLayoutManager(getActivity(), 4) {
-            @Override
-            public boolean canScrollVertically() {
-                return false;
-            }
-        });
+
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(),4);
+
+        scRc.setLayoutManager(gridLayoutManager);
+
+//2行，4列
+
+
         collectionAdapter = new CommonAdapter<MyCollectionBean.ObjBean>(getActivity(), R.layout.item_service_app, collectionBean.getObj()) {
             @Override
             protected void convert(ViewHolder holder, MyCollectionBean.ObjBean objBean, int position) {
@@ -301,11 +307,28 @@ public class YsMyFragment extends BaseFragment {
                         .error(getResources().getColor(R.color.app_bg))
                         .into((ImageView) holder.getView(R.id.iv_app_icon));
                    /*appIntranet  1 需要内网*/
-
+               holder.itemView.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View view) {
+                       Intent intent = new Intent(getActivity(), BaseWebActivity4.class);
+                       intent.putExtra("appName",objBean.getAppName());
+                       intent.putExtra("appUrl",objBean.getAppUrl());
+                       intent.putExtra("appId",objBean.getAppId() + "");
+                       startActivity(intent);
+                   }
+               });
             }
         };
 
 
         scRc.setAdapter(collectionAdapter);
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+
+
+        netWorkMyCollection();
     }
 }

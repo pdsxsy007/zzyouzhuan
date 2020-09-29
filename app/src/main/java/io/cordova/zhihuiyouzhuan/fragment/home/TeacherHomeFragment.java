@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -34,6 +35,8 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
+import com.jwsd.libzxing.OnQRCodeListener;
+import com.jwsd.libzxing.QRCodeManager;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -59,6 +62,7 @@ import io.cordova.zhihuiyouzhuan.R;
 import io.cordova.zhihuiyouzhuan.UrlRes;
 import io.cordova.zhihuiyouzhuan.YsMainActivity;
 import io.cordova.zhihuiyouzhuan.activity.LoginActivity2;
+import io.cordova.zhihuiyouzhuan.activity.SystemMsgActivity;
 import io.cordova.zhihuiyouzhuan.activity.YsNewsActivity;
 import io.cordova.zhihuiyouzhuan.adapter.NewsAdapter3;
 import io.cordova.zhihuiyouzhuan.adapter.YsAppAdapter;
@@ -83,17 +87,20 @@ import io.cordova.zhihuiyouzhuan.utils.BaseFragment;
 import io.cordova.zhihuiyouzhuan.utils.JsonUtil;
 import io.cordova.zhihuiyouzhuan.utils.MyApp;
 import io.cordova.zhihuiyouzhuan.utils.NoScrollViewPager;
+import io.cordova.zhihuiyouzhuan.utils.PermissionsUtil;
 import io.cordova.zhihuiyouzhuan.utils.SPUtils;
+import io.cordova.zhihuiyouzhuan.utils.StringUtils;
 import io.cordova.zhihuiyouzhuan.utils.ToastUtils;
 import io.cordova.zhihuiyouzhuan.utils.ViewUtils;
 import io.cordova.zhihuiyouzhuan.utils.netState;
 import io.cordova.zhihuiyouzhuan.web.BaseWebActivity4;
+import pub.devrel.easypermissions.AfterPermissionGranted;
 
 /**
  * Created by Cuilei on 2020/9/10.
  */
 
-public class TeacherHomeFragment extends BaseFragment {
+public class TeacherHomeFragment extends BaseFragment implements PermissionsUtil.IPermissionsCallback {
 
 //    @BindView(R.id.news_title_1)
 //    TextView title1;
@@ -166,6 +173,11 @@ public class TeacherHomeFragment extends BaseFragment {
     TextView dbNum;
     @BindView(R.id.oa_dy)
     TextView dyNum;
+    @BindView(R.id.sys_msg)
+    LinearLayout sysMsg;
+    @BindView(R.id.scan_img)
+    ImageView iv_qr;
+    PermissionsUtil permissionsUtil;
     @Override
     public int getLayoutResID() {
         return R.layout.fragment_teacher_home;
@@ -306,9 +318,20 @@ public class TeacherHomeFragment extends BaseFragment {
         super.initListener();
 
 
+        sysMsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SystemMsgActivity.class));
+            }
+        });
 
+        iv_qr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-
+            cameraTask();
+            }
+        });
 
     }
 
@@ -528,6 +551,9 @@ public class TeacherHomeFragment extends BaseFragment {
                 });
 
     }
+
+
+
     OAMessageBean oaEmail = new OAMessageBean();
 
     private void netWorkOAEmail() {
@@ -550,6 +576,72 @@ public class TeacherHomeFragment extends BaseFragment {
                         ViewUtils.cancelLoadingDialog();
                     }
                 });
+    }
+
+    private static final int RC_CAMERA_PERM = 123;
+
+    @AfterPermissionGranted(RC_CAMERA_PERM)
+    public void cameraTask() {
+
+        permissionsUtil=  PermissionsUtil
+                .with(this)
+                .requestCode(1)
+                .isDebug(true)//开启log
+                .permissions(PermissionsUtil.Permission.Camera.CAMERA,PermissionsUtil.Permission.Storage.READ_EXTERNAL_STORAGE,PermissionsUtil.Permission.Storage.WRITE_EXTERNAL_STORAGE)
+                .request();
+    }
+
+    public void onScanQR() {
+        isLogin = !StringUtils.isEmpty((String)SPUtils.get(MyApp.getInstance(),"username",""));
+
+        QRCodeManager.getInstance()
+                .with(getActivity())
+                .setReqeustType(0)
+                .setRequestCode(55846)
+                .scanningQRCode(new OnQRCodeListener() {
+                    @Override
+                    public void onCompleted(String result) {
+                        Log.e("QRCodeManager = ",result);
+                        if(!isLogin){
+                            Intent intent = new Intent(MyApp.getInstance(), LoginActivity2.class);
+                            startActivity(intent);
+                        }else {
+
+                            Intent intent = new Intent(MyApp.getInstance(), BaseWebActivity4.class);
+                            intent.putExtra("appUrl",result);
+                            intent.putExtra("scan","scan");
+                            startActivity(intent);
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(Throwable errorMsg) {
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+
+                    }
+
+
+                    @Override
+                    public void onManual(int requestCode, int resultCode, Intent data) {
+
+                    }
+                });
+
+    }
+    @Override
+    public void onPermissionsGranted(int requestCode, String... permission) {
+        onScanQR();
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, String... permission) {
+
     }
 
     private class MyPagerAdapter extends FragmentStatePagerAdapter {
@@ -786,7 +878,7 @@ public class TeacherHomeFragment extends BaseFragment {
                         Log.e("s",response.body());
 
                         countBean1 = JSON.parseObject(response.body(), CountBean.class);
-                        messageNum.setText( "您有"+countBean1.getCount()+"条信息待查看，请及时查看");
+                        messageNum.setText( "您有"+countBean1.getObj()+"条信息待查看，请及时查看");
 
                     }
                     @Override
@@ -806,6 +898,7 @@ public class TeacherHomeFragment extends BaseFragment {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
+                        Log.e("获取应用",response.body());
                         ysAppBean =  JsonUtil.parseJson(response.body(),YsAppBean.class);
 
                         List<YsAppBean.Obj> objList = ysAppBean.getObj();
@@ -820,7 +913,8 @@ public class TeacherHomeFragment extends BaseFragment {
                             }
                             YsAppBean.Obj.Apps app = new YsAppBean.Obj.Apps();
                             app.setAppImages(getResourcesUri(R.drawable.more_app));
-                            app.setAppName("更多");
+                            app.setAppName("更多应用");
+                            objList2.add(app);
                         }else{
                             objList2.addAll(objList1);
                         }

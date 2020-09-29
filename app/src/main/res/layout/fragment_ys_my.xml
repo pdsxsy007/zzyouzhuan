@@ -5,173 +5,189 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="vertical"
-        android:background="@mipmap/ys_person_bg">
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:gravity="right"
-          android:layout_height="wrap_content">
-          <ImageView
-              android:layout_width="20dp"
-              android:layout_height="20dp"
-              android:layout_marginRight="@dimen/dp15"
-              android:layout_marginTop="@dimen/dp30"
-              android:id="@+id/tv_app_setting"
-              android:src="@mipmap/ys_setting" />
-      </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dp5"
-            android:layout_height="wrap_content">
-
-            <RelativeLayout
-                android:id="@+id/rl_top"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="@dimen/dp25"
-                android:background="@mipmap/photo_bg"
-                >
-
-                <io.cordova.zhihuiyouzhuan.widget.XCRoundImageView
-                    android:id="@+id/iv_user_head"
-                    android:layout_width="40dp"
-                    android:layout_height="60dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/dp10"
-                    android:layout_marginTop="@dimen/dp10"
-                    android:layout_centerHorizontal="true"
-                    />
-            </RelativeLayout>
-
+            android:orientation="vertical"
+            android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="180dp"
                 android:orientation="vertical"
+                android:background="@mipmap/ys_person_bg">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="right"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="@dimen/dp15"
+                        android:layout_marginTop="@dimen/dp30"
+                        android:id="@+id/tv_app_setting"
+                        android:src="@mipmap/ys_setting" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_top"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="@dimen/dp25"
+                        android:background="@mipmap/photo_bg"
+                        >
+
+                        <io.cordova.zhihuiyouzhuan.widget.XCRoundImageView
+                            android:id="@+id/iv_user_head"
+                            android:layout_width="40dp"
+                            android:layout_height="60dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="@dimen/dp10"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:layout_centerHorizontal="true"
+                            />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:layout_marginLeft="@dimen/dp15"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:text="赵天文"
+                            android:id="@+id/name_tv"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp18"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:text="保卫处"
+                            android:id="@+id/department"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp12"
+                            android:layout_marginTop="@dimen/dp5"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="-40dp"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="@color/white"
+                >
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:id="@+id/wd_rc"
+                        android:layout_height="wrap_content">
+
+                    </android.support.v7.widget.RecyclerView>
+                </HorizontalScrollView>
+
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="@dimen/dp15"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:text="我的成果"
+                android:textSize="@dimen/sp14"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/dp30"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview2"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
                 android:layout_marginTop="@dimen/dp10"
                 android:layout_marginLeft="@dimen/dp15"
-                android:layout_height="wrap_content">
-              <TextView
-                  android:layout_width="match_parent"
-                  android:text="赵天文"
-                  android:id="@+id/name_tv"
-                  android:textColor="@color/white"
-                  android:textSize="@dimen/sp18"
-                  android:layout_height="wrap_content" />
+                android:layout_marginRight="@dimen/dp15"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="@color/white"
+                >
 
-                <TextView
+                <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:text="保卫处"
-                    android:id="@+id/department"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp12"
-                    android:layout_marginTop="@dimen/dp5"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                    android:layout_height="match_parent">
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:id="@+id/cg_rc"
+                        android:layout_height="wrap_content">
+
+                    </android.support.v7.widget.RecyclerView>
+                </HorizontalScrollView>
+
+            </android.support.v7.widget.CardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp30"
+                android:text="我的收藏"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp14"
+                android:textStyle="bold" />
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginBottom="@dimen/dp15"
+
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="@color/white"
+                >
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:id="@+id/cg_sc"
+                        android:layout_marginBottom="@dimen/dp15"
+
+                        android:layout_height="wrap_content">
+
+                    </android.support.v7.widget.RecyclerView>
 
 
+                </HorizontalScrollView>
+
+            </android.support.v7.widget.CardView>
         </LinearLayout>
 
-    </LinearLayout>
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardview"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="-40dp"
-        android:layout_marginLeft="@dimen/dp15"
-        android:layout_marginRight="@dimen/dp15"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="3dp"
-        app:cardBackgroundColor="@color/white"
-        >
+    </ScrollView>
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:id="@+id/wd_rc"
-                android:layout_height="wrap_content">
-
-            </android.support.v7.widget.RecyclerView>
-        </HorizontalScrollView>
-
-    </android.support.v7.widget.CardView>
-
-
-    <TextView
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="@dimen/dp15"
-    android:textStyle="bold"
-    android:layout_width="match_parent"
-    android:text="我的成果"
-    android:textSize="@dimen/sp14"
-    android:textColor="@color/black"
-    android:layout_marginTop="@dimen/dp30"
-    android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardview2"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="@dimen/dp10"
-        android:layout_marginLeft="@dimen/dp15"
-        android:layout_marginRight="@dimen/dp15"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="3dp"
-        app:cardBackgroundColor="@color/white"
-        >
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:id="@+id/cg_rc"
-                android:layout_height="wrap_content">
-
-            </android.support.v7.widget.RecyclerView>
-        </HorizontalScrollView>
-
-    </android.support.v7.widget.CardView>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="@dimen/dp15"
-        android:layout_marginTop="@dimen/dp30"
-        android:text="我的收藏"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp14"
-        android:textStyle="bold" />
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardview3"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginTop="@dimen/dp10"
-        android:layout_marginLeft="@dimen/dp15"
-        android:layout_marginRight="@dimen/dp15"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="3dp"
-        app:cardBackgroundColor="@color/white"
-        >
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:id="@+id/cg_sc"
-
-                android:layout_height="wrap_content">
-
-            </android.support.v7.widget.RecyclerView>
-
-
-        </HorizontalScrollView>
-
-    </android.support.v7.widget.CardView>
 </LinearLayout>

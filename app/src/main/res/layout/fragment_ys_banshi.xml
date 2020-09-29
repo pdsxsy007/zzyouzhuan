@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:minHeight="?attr/actionBarSize"
@@ -24,6 +25,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp16"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 />
             <ImageView
@@ -39,21 +41,44 @@
 
 
 
+   <android.support.v4.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:scrollbars="none"
+       android:layout_marginTop="-10dp"
+       android:layout_height="match_parent">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:background="@drawable/ban_bai"
+           android:orientation="vertical"
+           android:layout_height="match_parent">
+           <TextView
+               android:layout_marginLeft="15dp"
+               android:layout_marginRight="@dimen/dp15"
+               android:textStyle="bold"
+               android:layout_width="match_parent"
+               android:text="使用记录"
+               android:textSize="@dimen/sp14"
+               android:textColor="@color/black"
+               android:layout_marginTop="@dimen/dp20"
+               android:layout_height="wrap_content" />
+           <android.support.v7.widget.RecyclerView
+               android:layout_width="match_parent"
+               android:layout_margin="@dimen/dp15"
+               android:id="@+id/use_rc"
+               android:layout_height="wrap_content">
+           </android.support.v7.widget.RecyclerView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:background="@drawable/ban_bai"
-        android:layout_marginTop="-10dp"
-        android:layout_height="match_parent">
+           <android.support.v7.widget.RecyclerView
+               android:layout_width="match_parent"
+               android:layout_margin="@dimen/dp15"
+               android:id="@+id/service_rc"
+               android:layout_height="match_parent">
 
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_margin="@dimen/dp15"
-            android:id="@+id/service_rc"
-            android:layout_height="match_parent">
+           </android.support.v7.widget.RecyclerView>
+       </LinearLayout>
 
 
-        </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
+   </android.support.v4.widget.NestedScrollView>
+
 </LinearLayout>

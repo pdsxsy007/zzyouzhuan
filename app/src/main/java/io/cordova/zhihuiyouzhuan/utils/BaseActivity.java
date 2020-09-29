@@ -2,15 +2,18 @@ package io.cordova.zhihuiyouzhuan.utils;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
 import com.cxz.swipelibrary.SwipeBackActivity;
+import com.gyf.immersionbar.ImmersionBar;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import butterknife.ButterKnife;
+import io.cordova.zhihuiyouzhuan.R;
 import io.cordova.zhihuiyouzhuan.UrlRes;
 
 import static io.cordova.zhihuiyouzhuan.utils.MyApp.getInstance;
@@ -23,19 +26,23 @@ import static io.cordova.zhihuiyouzhuan.utils.MyApp.getInstance;
 
 public abstract class BaseActivity extends SwipeBackActivity {
     private ProgressDialog dialog;
+
     public int netStateType = 0;
+    protected Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(  getResourceId());
         ButterKnife.bind(this);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         String imei = MobileInfoUtils.getIMEI(this);
         SPUtils.put(this,"imei",imei);
         initView();
+        fitsLayoutOverlap();
         initHandler();
         initData();
         initListener();
-        initSystemBar();
+
         ActivityUtils.getActivityManager().addActivity(this);
         if (!netState.isConnect(BaseActivity.this) ){
             ToastUtils.showToast(BaseActivity.this,"网络连接异常!");
@@ -146,5 +153,11 @@ public abstract class BaseActivity extends SwipeBackActivity {
 
                     }
                 });
+    }
+
+    private void fitsLayoutOverlap() {
+
+            ImmersionBar.setTitleBar(this, toolbar);
+
     }
 }

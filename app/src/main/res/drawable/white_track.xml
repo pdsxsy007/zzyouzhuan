@@ -8,6 +8,6 @@
     <corners android:radius="10dp"/>
     <!--变化率定义从左到右的颜色不变-->
     <gradient
-        android:endColor="#fff"
-        android:startColor="#fff"/>
+        android:endColor="#F5F5F5"
+        android:startColor="#F5F5F5"/>
 </shape>

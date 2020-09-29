@@ -43,6 +43,7 @@ public class YsNewsMainAdapter extends CommonAdapter<YsNewsBean.Obj.PortalNewsLi
             public void onClick(View view) {
                 Intent intent = new Intent(mContext,BaseWebActivity4.class);
                 intent.putExtra("appUrl","http://39.101.203.225:8081/portal/dist/native/newsDetail.html?id=" + obj.getPortalNewsId());
+                intent.putExtra("appName",obj.getPortalNewsTitle());
                 mContext.startActivity(intent);
             }
         });
