@@ -8,7 +8,7 @@
     <string name="exit_out">退出登录</string>
     <string name="setting">设置</string>
     <string name="tab_home">首页</string>
-    <string name="tab_service">应用服务</string>
+    <string name="tab_service">应用中心</string>
     <string name="tab_find">办事大厅</string>
     <string name="tab_my">个人中心</string>
     <string name="find_pwd1">下一步，设置新密码</string>

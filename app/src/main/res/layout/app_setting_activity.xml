@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
-    android:fitsSystemWindows="true"
+    android:fitsSystemWindows="false"
     android:orientation="vertical">
     <include layout="@layout/layout_head_title_one"
         android:id="@+id/id_title">
@@ -196,6 +196,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp1"
+        android:background="#eee"
         ></View>
     <LinearLayout
         android:id="@+id/ll_clear_cache"
@@ -243,6 +244,7 @@
 
     <View
         android:layout_width="match_parent"
+        android:background="#eee"
         android:layout_height="@dimen/dp1"></View>
 
     <LinearLayout
@@ -273,6 +275,7 @@
     </LinearLayout>
     <View
         android:layout_width="match_parent"
+        android:background="#eee"
         android:layout_height="@dimen/dp1"></View>
 
     <LinearLayout
@@ -301,6 +304,7 @@
     </LinearLayout>
     <View
         android:layout_width="match_parent"
+        android:background="#eee"
         android:layout_height="@dimen/dp12"></View>
 
     <LinearLayout
@@ -327,5 +331,8 @@
             android:padding="@dimen/sp12"
             android:layout_gravity="center"/>
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:background="#eee"
+        android:layout_height="@dimen/dp1"></View>
 </LinearLayout>

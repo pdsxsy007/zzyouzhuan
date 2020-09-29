@@ -269,7 +269,7 @@
                     android:padding="@dimen/sp12"
                     android:text="我的收藏"
                     android:textStyle="bold"
-                    android:textSize="@dimen/sp14"
+                    android:textSize="@dimen/sp16"
                     android:textColor="@color/black2"/>
 
                 <TextView
@@ -300,7 +300,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/sp12"
                     android:text="我的信息"
-                    android:textSize="@dimen/sp14"
+                    android:textSize="@dimen/sp16"
                     android:textStyle="bold"
                     android:textColor="@color/black2"/>
 

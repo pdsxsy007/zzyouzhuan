@@ -44,7 +44,9 @@ public class YsAppAdapter2 extends CommonAdapter<YsAppBean.Obj> {
 
                 appdatas.addAll(mdatas.get(position).getApps());
                 recyclerView.setAdapter(new YsAppAdapter(mContext,R.layout.item_app,appdatas));
-        }
+        }else {
+                holder.setVisible(R.id.service_title,false);
+            }
 
 
 

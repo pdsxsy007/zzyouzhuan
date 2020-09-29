@@ -328,7 +328,7 @@ public class TeacherHomeFragment extends BaseFragment implements PermissionsUtil
         iv_qr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+//提交
             cameraTask();
             }
         });

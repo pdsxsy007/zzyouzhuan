@@ -103,11 +103,7 @@ public class YsBanshiFragment extends BaseFragment {
                         ysAppBean = JsonUtil.parseJson(response.body(), YsAppBean.class);
 
                         List<YsAppBean.Obj> objList = ysAppBean.getObj();
-                        for (int i = 0; i < objList.size(); i++) {
-                            if (objList.get(i).getModulesCode().contains("yyzx_")) {
-                                objList1.addAll(objList.get(i).getApps());
-                            }
-                        }
+
                         ysAppAdapter = new YsAppAdapter3(getActivity(), R.layout.item_service_bnshi, objList);
                         serviceRc.setAdapter(ysAppAdapter);
                         ysAppAdapter.notifyDataSetChanged();

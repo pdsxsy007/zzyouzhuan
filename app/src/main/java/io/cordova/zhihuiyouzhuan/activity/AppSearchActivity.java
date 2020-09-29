@@ -85,7 +85,7 @@ public class AppSearchActivity extends BaseActivity {
         ImmersionBar.with(AppSearchActivity.this).keyboardEnable(true).statusBarDarkFont(false).init();
         super.initView();
         isLogin = !StringUtils.isEmpty((String)SPUtils.get(MyApp.getInstance(),"username",""));
-        tvTitle.setText("应用搜索");
+        tvTitle.setText("搜索");
         tvResult.setVisibility(View.GONE);
         //tvSearchCache.setVisibility(View.GONE);
         rl_history.setVisibility(View.GONE);

@@ -25,6 +25,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="30dp"
+                android:layout_height="15dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+
+                android:src="@mipmap/left_arrow" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,6 +125,7 @@
 
         <RelativeLayout
             android:id="@+id/rl_history"
+            android:layout_marginTop="@dimen/dp25"
             android:layout_width="match_parent"
             android:layout_height="30dp">
             <TextView
@@ -124,10 +133,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="@dimen/sp12"
+                android:textSize="@dimen/sp16"
                 android:layout_centerVertical="true"
+                android:textStyle="bold"
                 android:layout_marginLeft="@dimen/dp10"
-                android:text="搜索历史"/>
+                android:text="使用记录"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -141,11 +151,11 @@
                     android:id="@+id/tv_clear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp12"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/sp11"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/dp10"
-                    android:text="清空"/>
+                    android:text="清除记录"/>
             </LinearLayout>
         </RelativeLayout>
 
