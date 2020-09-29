@@ -13,10 +13,6 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp0.5"
-        android:background="#F3F5F8"
-        />
+
 
 </LinearLayout>
