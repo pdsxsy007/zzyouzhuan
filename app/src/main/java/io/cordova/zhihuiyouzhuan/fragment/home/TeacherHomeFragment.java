@@ -540,7 +540,12 @@ public class TeacherHomeFragment extends BaseFragment implements PermissionsUtil
                     public void onSuccess(Response<String> response) {
                         Log.e("oa待办",response.body());
                         oaMessageBean = JSON.parseObject(response.body(),OAMessageBean.class);
-                        dbNum.setText(oaMessageBean.getCount()+"/条");
+                        if(oaMessageBean.getCount() != null){
+                            dbNum.setText(oaMessageBean.getCount()+"/条");
+                        }else {
+                            dbNum.setText("0/条");
+                        }
+
                     }
                     @Override
                     public void onError(Response<String> response) {
@@ -567,7 +572,12 @@ public class TeacherHomeFragment extends BaseFragment implements PermissionsUtil
                     public void onSuccess(Response<String> response) {
                         Log.e("s待办",response.body());
                         oaEmail = JSON.parseObject(response.body(),OAMessageBean.class);
-                        dyNum.setText(oaEmail.getCount() + "/条");
+                        //dyNum.setText(oaEmail.getCount() + "/条");
+                        if(oaEmail.getCount() != null){
+                            dbNum.setText(oaEmail.getCount()+"/条");
+                        }else {
+                            dbNum.setText("0/条");
+                        }
                     }
                     @Override
                     public void onError(Response<String> response) {

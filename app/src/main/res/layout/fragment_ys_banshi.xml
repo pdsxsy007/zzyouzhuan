@@ -68,14 +68,23 @@
                android:layout_height="wrap_content">
            </android.support.v7.widget.RecyclerView>
 
-           <android.support.v7.widget.RecyclerView
+           <LinearLayout
                android:layout_width="match_parent"
-               android:layout_margin="@dimen/dp15"
-               android:id="@+id/service_rc"
+               android:orientation="vertical"
                android:layout_height="match_parent">
+               <android.support.v7.widget.RecyclerView
+                   android:layout_width="match_parent"
+                   android:layout_marginLeft="@dimen/dp15"
+                   android:layout_marginBottom="@dimen/dp15"
+                   android:layout_marginRight="@dimen/dp15"
+                   android:id="@+id/service_rc"
+                   android:layout_height="match_parent">
 
 
-           </android.support.v7.widget.RecyclerView>
+               </android.support.v7.widget.RecyclerView>
+
+
+           </LinearLayout>
        </LinearLayout>
 
 

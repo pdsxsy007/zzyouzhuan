@@ -609,7 +609,6 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
                             flag = 1;
                             T.showShort(MyApp.getInstance(),baseBean.getMsg());
                             Intent intent = new Intent();
-                            intent.putExtra("refreshService","dongtai");
                             intent.setAction("refresh2");
                             sendBroadcast(intent);
                         }else {
@@ -643,7 +642,6 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
                             flag = 0;
                             T.showShort(MyApp.getInstance(),baseBean.getMsg());
                             Intent intent = new Intent();
-                            intent.putExtra("refreshService","dongtai");
                             intent.setAction("refresh2");
                             sendBroadcast(intent);
                         }else {
@@ -747,6 +745,7 @@ public class BaseWebActivity4 extends AppCompatActivity implements GestureDetect
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            Log.e("打印",request.getUrl().toString());
             String url =  null;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 url = request.getUrl().toString();

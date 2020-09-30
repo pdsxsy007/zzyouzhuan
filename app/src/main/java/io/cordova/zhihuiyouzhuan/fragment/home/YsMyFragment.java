@@ -1,11 +1,15 @@
 package io.cordova.zhihuiyouzhuan.fragment.home;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -69,6 +73,12 @@ public class YsMyFragment extends BaseFragment {
     @BindView(R.id.cg_sc)
     RecyclerView scRc;
 
+    @BindView(R.id.hs_scroll)
+    HorizontalScrollView hs_scroll;
+
+    @BindView(R.id.tv_show_msg)
+    TextView tv_show_msg;
+
     @Override
     public int getLayoutResID() {
         return R.layout.fragment_ys_my;
@@ -95,6 +105,9 @@ public class YsMyFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), AppSetting.class));
             }
         });
+
+        registerBoradcastReceiver();
+
     }
 
     /**
@@ -246,26 +259,26 @@ public class YsMyFragment extends BaseFragment {
                     .execute(new StringCallback() {
                         @Override
                         public void onSuccess(Response<String> response) {
-                            Log.e("s", response.toString());
+                            Log.e("我的收藏", response.body());
                             collectionBean = JSON.parseObject(response.body(), MyCollectionBean.class);
                             if (collectionBean.isSuccess()) {
                                 if (collectionBean.getObj() != null) {
                                     if (collectionBean.getObj().size() > 0) {
 
-
+                                        hs_scroll.setVisibility(View.VISIBLE);
+                                        tv_show_msg.setVisibility(View.GONE);
                                         setCollectionList();
 
                                     } else {
-
-
+                                        hs_scroll.setVisibility(View.GONE);
+                                        tv_show_msg.setVisibility(View.VISIBLE);
                                     }
                                 } else {
 
+                                    hs_scroll.setVisibility(View.GONE);
+                                    tv_show_msg.setVisibility(View.VISIBLE);
                                 }
 
-                            } else {
-
-//                            T.showShort(MyApp.getInstance(), collectionBean.getMsg());
                             }
                         }
 
@@ -324,11 +337,31 @@ public class YsMyFragment extends BaseFragment {
         scRc.setAdapter(collectionAdapter);
     }
 
+
+
+    public void registerBoradcastReceiver() {
+        IntentFilter myIntentFilter = new IntentFilter();
+        myIntentFilter.addAction("refresh2");
+        //注册广播
+        getActivity().registerReceiver(broadcastReceiver, myIntentFilter);
+    }
+
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(action.equals("refresh2")){
+                netWorkMyCollection();
+            }
+        }
+    };
+
+
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-
-
-        netWorkMyCollection();
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().unregisterReceiver(broadcastReceiver);
     }
 }
